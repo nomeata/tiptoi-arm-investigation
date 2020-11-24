@@ -2,6 +2,8 @@
 
 set -e
 
+[ -e "WWW Europa.gme" ] || wget https://ssl-static.ravensburger.de/db/applications/WWW\ Europa.gme
+
 arm-none-eabi-as test.txt -o test.elf
 arm-none-eabi-objcopy -O binary test.elf test.bin
 
