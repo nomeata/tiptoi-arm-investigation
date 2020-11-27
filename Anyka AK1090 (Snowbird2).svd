@@ -1,0 +1,1735 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<device schemaVersion="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD_Schema_1_0.xsd" >
+  <name>Snowbird2</name>
+  <description>Anyka AK1090</description>
+  <version>1.0</version>
+  <width>32</width>
+  <addressUnitBits>8</addressUnitBits>                            <!-- byte addressable memory -->
+
+<!-- The content of this file is a first, inofficial draft. Do not put trust into it! -->
+
+  <!-- default settings implicitly inherited by subsequent sections -->
+  <size>32</size>                                                 <!-- this is the default size (number of bits) of all peripherals
+                                                                       and register that do not define "size" themselves -->
+																	   
+	<peripherals>
+        <peripheral>
+            <name>CONFIG</name>
+            <baseAddress>0x4000000</baseAddress>
+            <addressBlock>
+                <offset>0</offset>
+                <size>0x200</size>
+                <usage>registers</usage>
+            </addressBlock>
+			
+            <registers>
+                
+				<register>
+                    <name>REG_CHIP_ID</name>
+                    <addressOffset>0x00</addressOffset>
+                    <description>holds the chip ID</description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_CLOCK_DIV1</name>
+                    <addressOffset>0x04</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_CLOCK_DIV2</name>
+                    <addressOffset>0x08</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_DACS_HCLK</name>
+                    <addressOffset>0x10</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_CLOCK_RST_EN</name>
+                    <addressOffset>0x0c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_DACS_HCLK</name>
+                    <addressOffset>0x10</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_IMG_SENSOR_CFG</name>
+                    <addressOffset>0x14</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_TIMER1_CTRL</name>
+                    <addressOffset>0x18</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_TIMER2_CTRL</name>
+                    <addressOffset>0x1c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_RTC_CTRL</name>
+                    <addressOffset>0x20</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_RTC_READ_VAL</name>
+                    <addressOffset>0x24</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_ADCS_CHANNEL</name>
+                    <addressOffset>0x28</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_PWM0_CTRL</name>
+                    <addressOffset>0x2c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_PWM1_CTRL</name>
+                    <addressOffset>0x30</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_INT_IRQ</name>
+                    <addressOffset>0x34</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_INT_FIQ</name>
+                    <addressOffset>0x38</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_WGPIO_POL</name>
+                    <addressOffset>0x3c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_WGPIO_CLR</name>
+                    <addressOffset>0x40</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_WGPIO_EN</name>
+                    <addressOffset>0x44</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_WGPIO_STA</name>
+                    <addressOffset>0x48</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_INT_SYSCTL</name>
+                    <addressOffset>0x4c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_POWER_CTRL</name>
+                    <addressOffset>0x50</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_BOOTUP_MODE</name>
+                    <addressOffset>0x54</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_MUL_FUNC_CTRL</name>
+                    <addressOffset>0x58</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_ANALOG_CTRL1</name>
+                    <addressOffset>0x5c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_REG_CFG</name>
+                    <addressOffset>0x60</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_ANALOG_CTRL2</name>
+                    <addressOffset>0x64</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_ANALOG_CTRL3</name>
+                    <addressOffset>0x68</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_ANALOG_CTRL4</name>
+                    <addressOffset>0x6c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_ADC1_STA</name>
+                    <addressOffset>0x70</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_SHARE_PIN_CTRL</name>
+                    <addressOffset>0x74</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_ANALOG_CTRL5</name>
+                    <addressOffset>0x78</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_GPIO_DIR_1</name>
+                    <addressOffset>0x7c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_GPIO_OUT_1</name>
+                    <addressOffset>0x80</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_GPIO_DIR_2</name>
+                    <addressOffset>0x84</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_GPIO_OUT_2</name>
+                    <addressOffset>0x88</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_PMU_CTRL1</name>
+                    <addressOffset>0x8c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_PMU_CTRL2</name>
+                    <addressOffset>0x90</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_ADC1_CFG</name>
+                    <addressOffset>0x94</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_INT_ANALOG</name>
+                    <addressOffset>0x98</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_GPIO_PULL_UD_1</name>
+                    <addressOffset>0x9c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_EFUSE_CTRL </name>
+                    <addressOffset>0xa4</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_EFUSE_READ_DATA1 </name>
+                    <addressOffset>0xa8</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_EFUSE_READ_DATA2</name>
+                    <addressOffset>0xac</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_GPIO_IN_1</name>
+                    <addressOffset>0xbc</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_GPIO_IN_2</name>
+                    <addressOffset>0xc0</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_INT_STA</name>
+                    <addressOffset>0xcc</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_GPIO_INT_EN_1</name>
+                    <addressOffset>0xe0</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_GPIO_INT_EN_2</name>
+                    <addressOffset>0xe4</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+                
+				<register>
+                    <name>REG_0x40000f0</name>
+                    <addressOffset>0xf0</addressOffset>
+                    <description>unknown purpose</description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_0x40000f4</name>
+                    <addressOffset>0xf4</addressOffset>
+                    <description>unknown purpose</description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_TIMER2_CNT</name>
+                    <addressOffset>0x104</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+            </registers>
+        
+		</peripheral>
+		
+		<peripheral>
+            <name>L2</name>
+            <baseAddress>0x4010000</baseAddress>
+            <addressBlock>
+                <offset>0</offset>
+                <size>0x200</size>
+                <usage>registers</usage>
+            </addressBlock>
+			
+            <registers>
+
+				<register>
+                    <name>REG_L2_CONFIG</name>
+                    <addressOffset>0x000</addressOffset>
+                    <description></description>
+                    <size>32</size>
+					<fields>
+						<field>
+						  <name>MASS_MEM_SEL</name>
+						  <description></description>
+						  <bitOffset>3</bitOffset>
+						  <bitWidth>2</bitWidth>
+						</field>
+						<field>
+						  <name>AHB_FLAG_EN</name>
+						  <description>Enable the Advanced High-Performance Bus</description>
+						  <bitOffset>5</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>CPU_BUF_SEL</name>
+						  <description></description>
+						  <bitOffset>7</bitOffset>
+						  <bitWidth>4</bitWidth>
+						</field>
+						<field>
+						  <name>CPU_SEL_EN</name>
+						  <description></description>
+						  <bitOffset>11</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>CPU_BUF_NUM</name>
+						  <description></description>
+						  <bitOffset>12</bitOffset>
+						  <bitWidth>4</bitWidth>
+						</field>
+						<field>
+						  <name>LDMA_VLD_INT_EN</name>
+						  <description></description>
+						  <bitOffset>16</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>CURRENT_CNT_INT_EN</name>
+						  <description></description>
+						  <bitOffset>17</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>FIX_MADDR_H</name>
+						  <description>Upper RAM limit (RAM beyond this is used for UART buffers etc.</description>
+						  <bitOffset>20</bitOffset>
+						  <bitWidth>6</bitWidth>
+						</field>
+					</fields>
+                </register>
+
+				<register>
+                    <name>REG_L2_LDMA_SRC</name>
+                    <addressOffset>0x004</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_L2_LDMA_DEST</name>
+                    <addressOffset>0x008</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_L2_LDMA_COUNT</name>
+                    <addressOffset>0x00c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_L2_BUFFER_STATUS_1</name>
+                    <addressOffset>0x010</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_DIRTY_FLAG_1</name>
+                    <addressOffset>0x014</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_DIRTY_FLAG_2</name>
+                    <addressOffset>0x018</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_CURRENT_COUNT</name>
+                    <addressOffset>0x01c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_L2_BUFFER_CONFIG_1</name>
+                    <addressOffset>0x020</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_L2_BUFFER_CONFIG_2</name>
+                    <addressOffset>0x024</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_L2_BUFFER_CONFIG_3</name>
+                    <addressOffset>0x028</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_L2_BUFFER_ENABLE</name>
+                    <addressOffset>0x02c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_L2_BUFFER_STATUS_2</name>
+                    <addressOffset>0x030</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT1</name>
+                    <addressOffset>0x120</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT1</name>
+                    <addressOffset>0x120</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT2</name>
+                    <addressOffset>0x124</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT3</name>
+                    <addressOffset>0x128</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT4</name>
+                    <addressOffset>0x12c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT5</name>
+                    <addressOffset>0x130</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT6</name>
+                    <addressOffset>0x134</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT7</name>
+                    <addressOffset>0x138</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT8</name>
+                    <addressOffset>0x13c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT9</name>
+                    <addressOffset>0x140</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT10</name>
+                    <addressOffset>0x144</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT11</name>
+                    <addressOffset>0x148</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT12</name>
+                    <addressOffset>0x14c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT13</name>
+                    <addressOffset>0x150</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT14</name>
+                    <addressOffset>0x154</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT15</name>
+                    <addressOffset>0x158</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT16</name>
+                    <addressOffset>0x15c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT17</name>
+                    <addressOffset>0x160</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT18</name>
+                    <addressOffset>0x164</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT19</name>
+                    <addressOffset>0x168</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT20</name>
+                    <addressOffset>0x16c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT21</name>
+                    <addressOffset>0x170</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT22</name>
+                    <addressOffset>0x174</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT23</name>
+                    <addressOffset>0x178</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT24</name>
+                    <addressOffset>0x17c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT25</name>
+                    <addressOffset>0x180</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT26</name>
+                    <addressOffset>0x184</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT27</name>
+                    <addressOffset>0x188</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT28</name>
+                    <addressOffset>0x18c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT29</name>
+                    <addressOffset>0x190</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT30</name>
+                    <addressOffset>0x194</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT31</name>
+                    <addressOffset>0x198</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT32</name>
+                    <addressOffset>0x19c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT33</name>
+                    <addressOffset>0x1a0</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT34</name>
+                    <addressOffset>0x1a4</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT35</name>
+                    <addressOffset>0x1a8</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT36</name>
+                    <addressOffset>0x1ac</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT37</name>
+                    <addressOffset>0x1b0</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT38</name>
+                    <addressOffset>0x1b4</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT39</name>
+                    <addressOffset>0x1b8</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_L2_PAGE_LIFE_COUNT40</name>
+                    <addressOffset>0x1bc</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+		    </registers>
+			
+        </peripheral>			
+
+		<peripheral>
+            <name>TBD</name>
+            <baseAddress>0x401c000</baseAddress>
+            <addressBlock>
+                <offset>0</offset>
+                <size>0x100</size>
+                <usage>registers</usage>
+            </addressBlock>
+			
+            <registers>
+
+				<register>
+                    <name>REG_TBD_SOMETHING</name>
+                    <addressOffset>0x00</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+		    </registers>
+			
+        </peripheral>	
+		
+		<peripheral>
+            <name>UART</name>
+            <baseAddress>0x4036000</baseAddress>
+            <addressBlock>
+                <offset>0</offset>
+                <size>0x10</size>
+                <usage>registers</usage>
+            </addressBlock>
+			
+            <registers>
+
+				<register>
+                    <name>UART_CFG1</name>
+                    <addressOffset>0x00</addressOffset>
+                    <description></description>
+                    <size>32</size>
+					<fields>
+						<field>
+						  <name>BAUD_RATE_DIV</name>
+						  <description></description>
+						  <bitOffset>0</bitOffset>
+						  <bitWidth>16</bitWidth>
+						</field>
+						<field>
+						  <name>UTD_SEL_INVERSELY</name>
+						  <description></description>
+						  <bitOffset>16</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>URD_SEL_INVERSELY</name>
+						  <description></description>
+						  <bitOffset>17</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>UART_INTERFACE_EN</name>
+						  <description></description>
+						  <bitOffset>21</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>BAUD_RATE_ADJ_EN</name>
+						  <description></description>
+						  <bitOffset>22</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>RX_TIMEOUT_EN</name>
+						  <description></description>
+						  <bitOffset>23</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>PARITY_SEL_EVEN</name>
+						  <description></description>
+						  <bitOffset>25</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>PARITY_EN</name>
+						  <description></description>
+						  <bitOffset>26</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>ENDIAN_SEL_BIG</name>
+						  <description></description>
+						  <bitOffset>27</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>TX_STA_CLR</name>
+						  <description></description>
+						  <bitOffset>28</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>RX_STA_CLR</name>
+						  <description></description>
+						  <bitOffset>29</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>RX_ADR_CLR</name>
+						  <description></description>
+						  <bitOffset>30</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+						<field>
+						  <name>TX_ADR_CLR</name>
+						  <description></description>
+						  <bitOffset>31</bitOffset>
+						  <bitWidth>1</bitWidth>
+						</field>
+					</fields>
+                </register>
+
+				<register>
+                    <name>UART_CFG2</name>
+                    <addressOffset>0x04</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>UART_DATA_CFG</name>
+                    <addressOffset>0x08</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>UART_BUF_TRSHLD</name>
+                    <addressOffset>0x0c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+                
+            </registers>
+			
+        </peripheral>																	   
+
+		<peripheral>
+            <name>NFC</name>
+            <baseAddress>0x404a000</baseAddress>
+            <addressBlock>
+                <offset>0</offset>
+                <size>0x200</size>
+                <usage>registers</usage>
+            </addressBlock>
+			
+            <registers>
+
+				<register>
+                    <name>REG_NFC_COMMAND</name>
+                    <addressOffset>0x00</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_ECC_MODE</name>
+                    <addressOffset>0x04</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_SOMETHING1</name>
+                    <addressOffset>0x08</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_SOMETHING2</name>
+                    <addressOffset>0x0c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_SOMETHING3</name>
+                    <addressOffset>0x10</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_SOMETHING4</name>
+                    <addressOffset>0x14</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_DATA1</name>
+                    <addressOffset>0x50</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_DATA2</name>
+                    <addressOffset>0x54</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_STATUS</name>
+                    <addressOffset>0x58</addressOffset>
+                    <description>unclear meaning</description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_CMD_LEN</name>
+                    <addressOffset>0x5c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_DATA_LEN</name>
+                    <addressOffset>0x60</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_RAND_ENC</name>
+                    <addressOffset>0x68</addressOffset>
+                    <description>NFC randomizer (encoder)</description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_RAND_DEC</name>
+                    <addressOffset>0x6c</addressOffset>
+                    <description>NFC randomizer (decoder)</description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG0</name>
+                    <addressOffset>0x100</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG1</name>
+                    <addressOffset>0x104</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG2</name>
+                    <addressOffset>0x108</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG3</name>
+                    <addressOffset>0x10c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG4</name>
+                    <addressOffset>0x110</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG5</name>
+                    <addressOffset>0x114</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG6</name>
+                    <addressOffset>0x118</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG7</name>
+                    <addressOffset>0x11c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG8</name>
+                    <addressOffset>0x120</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG9</name>
+                    <addressOffset>0x124</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG10</name>
+                    <addressOffset>0x128</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG11</name>
+                    <addressOffset>0x12c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG12</name>
+                    <addressOffset>0x130</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG13</name>
+                    <addressOffset>0x134</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG14</name>
+                    <addressOffset>0x138</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG15</name>
+                    <addressOffset>0x13c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG16</name>
+                    <addressOffset>0x140</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG17</name>
+                    <addressOffset>0x144</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG18</name>
+                    <addressOffset>0x148</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG19</name>
+                    <addressOffset>0x14c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG20</name>
+                    <addressOffset>0x150</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG21</name>
+                    <addressOffset>0x154</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG22</name>
+                    <addressOffset>0x158</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG23</name>
+                    <addressOffset>0x15c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_NFC_REG24</name>
+                    <addressOffset>0x160</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+		    </registers>
+			
+        </peripheral>	
+
+		<peripheral>
+            <name>ECC</name>
+            <description>meaning tbc</description>
+			<baseAddress>0x405b000</baseAddress>
+            <addressBlock>
+                <offset>0</offset>
+                <size>0x10</size>
+                <usage>registers</usage>
+            </addressBlock>
+			
+            <registers>
+
+				<register>
+                    <name>REG_ECC_CTRL</name>
+                    <addressOffset>0x00</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_ECC_MODE</name>
+                    <addressOffset>0x04</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_ECC_RESULT</name>
+                    <addressOffset>0x08</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+		    </registers>
+			
+        </peripheral>	
+
+		<peripheral>
+            <name>USB</name>
+            <baseAddress>0x4070000</baseAddress>
+            <addressBlock>
+                <offset>0</offset>
+                <size>0x400</size>
+                <usage>registers</usage>
+            </addressBlock>
+			
+            <registers>
+
+				<register>
+                    <name>REG_USB_FADDR</name>
+                    <addressOffset>0x000</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+				
+				<register>
+                    <name>REG_USB_POWER</name>
+                    <addressOffset>0x001</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+				
+				<register>
+                    <name>REG_USB_INTRTX1</name>
+                    <addressOffset>0x002</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+				
+				<register>
+                    <name>REG_USB_INTRTX2</name>
+                    <addressOffset>0x003</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+				
+				<register>
+                    <name>REG_USB_INTRRX1</name>
+                    <addressOffset>0x004</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+				
+				<register>
+                    <name>REG_USB_INTRRX2</name>
+                    <addressOffset>0x005</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+				
+				<register>
+                    <name>USB_REG_INTRTX1E</name>
+                    <addressOffset>0x006</addressOffset>
+                    <description></description>
+                    <size>16</size>
+                </register>
+				
+				<register>
+                    <name>USB_REG_INTRRX1E</name>
+                    <addressOffset>0x008</addressOffset>
+                    <description></description>
+                    <size>16</size>
+                </register>
+				
+				<register>
+                    <name>REG_USB_INTRUSB</name>
+                    <addressOffset>0x00a</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+				
+				<register>
+                    <name>REG_USB_TBD4</name>
+                    <addressOffset>0x00b</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_INDEX</name>
+                    <addressOffset>0x00e</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_TESEMODE</name>
+                    <addressOffset>0x00f</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_TXMAXP0/TXMAXP1</name>
+                    <addressOffset>0x010</addressOffset>
+                    <description></description>
+                    <size>16</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_CSR0/TXCSR1</name>
+                    <addressOffset>0x012</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_CSR02/TXCSR2</name>
+                    <addressOffset>0x013</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_RXMAXP1</name>
+                    <addressOffset>0x014</addressOffset>
+                    <description></description>
+                    <size>16</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_RXCSR1</name>
+                    <addressOffset>0x016</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_RXCSR2</name>
+                    <addressOffset>0x017</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_COUNT0</name>
+                    <addressOffset>0x018</addressOffset>
+                    <description></description>
+                    <size>8</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_RXCOUNT2</name>
+                    <addressOffset>0x019</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_FIFOSIZE</name>
+                    <addressOffset>0x01f</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_FIFO_EP0</name>
+                    <addressOffset>0x020</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_FIFO_EP1</name>
+                    <addressOffset>0x024</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_FIFO_EP2</name>
+                    <addressOffset>0x028</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_FIFO_EP3</name>
+                    <addressOffset>0x02c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_SOMETHING_1</name>
+                    <addressOffset>0x200</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_DMA_CNTL_1</name>
+                    <addressOffset>0x204</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_DMA_ADDR_1</name>
+                    <addressOffset>0x208</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_DMA_CNTL_2</name>
+                    <addressOffset>0x214</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_DMA_ADDR_2</name>
+                    <addressOffset>0x218</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_SOMETHING_4</name>
+                    <addressOffset>0x20c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_USB_EP0_TX_COUNT</name>
+                    <addressOffset>0x330</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_EP1_TX_COUNT</name>
+                    <addressOffset>0x334</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_EP2_TX_COUNT</name>
+                    <addressOffset>0x338</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_FORBID_WRITE_REG</name>
+                    <addressOffset>0x33c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_START_PRE_READ_REG</name>
+                    <addressOffset>0x340</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_USB_FS_SPEED_REG</name>
+                    <addressOffset>0x348</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+            </registers>
+			
+        </peripheral>																	   
+
+		<peripheral>
+            <name>DACS</name>
+            <baseAddress>0x4080000</baseAddress>
+            <addressBlock>
+                <offset>0</offset>
+                <size>0x100</size>
+                <usage>registers</usage>
+            </addressBlock>
+			
+            <registers>
+
+				<register>
+                    <name>REG_DACS_CFG</name>
+                    <addressOffset>0x00</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_I2S_CFG</name>
+                    <addressOffset>0x04</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_DACS_DATA</name>
+                    <addressOffset>0x08</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+						
+		    </registers>
+			
+        </peripheral>	
+
+		<peripheral>
+            <name>ADCS</name>
+            <baseAddress>0x4090000</baseAddress>
+            <addressBlock>
+                <offset>0</offset>
+                <size>0x100</size>
+                <usage>registers</usage>
+            </addressBlock>
+			
+            <registers>
+
+				<register>
+                    <name>REG_ADCS_CTRL</name>
+                    <addressOffset>0x00</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_ADCS_RX_DATA1</name>
+                    <addressOffset>0x04</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_ADCS_RX_DATA2</name>
+                    <addressOffset>0x08</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+		    </registers>
+			
+        </peripheral>	
+
+		<peripheral>
+            <name>SPI</name>
+            <baseAddress>0x40a0000</baseAddress>
+            <addressBlock>
+                <offset>0</offset>
+                <size>0x100</size>
+                <usage>registers</usage>
+            </addressBlock>
+			
+            <registers>
+
+				<register>
+                    <name>REG_SPI_CTRL</name>
+                    <addressOffset>0x00</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+				
+				<register>
+                    <name>REG_SPI_STA</name>
+                    <addressOffset>0x04</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_SPI_INT_EN</name>
+                    <addressOffset>0x08</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_SPI_DATA_CNT</name>
+                    <addressOffset>0x0c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_SPI_TX_EXBUF</name>
+                    <addressOffset>0x10</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_SPI_RX_EXBUF</name>
+                    <addressOffset>0x14</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_SPI_TX_INBUF</name>
+                    <addressOffset>0x18</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+
+				<register>
+                    <name>REG_SPI_RX_INBUF</name>
+                    <addressOffset>0x1c</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+                
+				<register>
+                    <name>REG_SPI_RX_TO</name>
+                    <addressOffset>0x20</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+				<register>
+                    <name>REG_SPI_TX_DLY</name>
+                    <addressOffset>0x24</addressOffset>
+                    <description></description>
+                    <size>32</size>
+                </register>
+			
+            </registers>
+			
+        </peripheral>																	   
+
+    </peripherals>
+
+</device>
