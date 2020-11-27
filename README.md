@@ -14,7 +14,7 @@ File `still-works.txt` is a partial attempt at finding the smallest file that st
 
 Some random notes in `notes.md`.
 
-I am hacking on this without actually having that Toiptoi-book; I used `tttool oid-table` and printed the first page to have something to tap on. See `WWW Europa.pdf`. 
+I am hacking on this without actually having that Toiptoi-book; I used `tttool oid-table` and printed the first page to have something to tap on. See `WWW Europa.pdf`.
 
 
 

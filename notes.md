@@ -11,10 +11,24 @@ strb    r0, [r5, #3564] @ 0xdec
 pop   {r4, r5, r6, r7, r8, r9, sl, pc}
 ```
 
+or as C:
+```
+#include <stdint.h>
+int32_t _24_a(int32_t a1) {
+    *(char *)(*(int32_t *)(a1 + 52) + 3564) = -1;
+    return 255;
+}
+```
+
+See `still-works.txt` and `still-works.c`.
+
 ## Register
 
 r8 sometimes #0, sometimes 0x08141000
 r9 sometimes #1, sometimes 0x08141024
+
+sp: The stack pointer  is only used in the inital segment, before the `entry`. Unclear if that is used.
+
 
 ## Program input analysis
 
@@ -29,6 +43,7 @@ Looking at the assembly code, I find these offsets occur, with some notes based 
 36 // function
 44 // function
 48 // function, no arguments, no results
+52 // loaded into r5, seems to point to a structure that it is working with
 72 // u16, wird mit 48 verglichen
 76 // ptr to u32
 80 // ptr to u32, wird mit obigem verglichen
