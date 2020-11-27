@@ -1,4 +1,20 @@
 
+## Minimal code
+
+OidMain needs to write 0xff to *(*(arg+52)+3564), else the pen crashes. Minimal code in assembly:
+
+```
+push {r4, r5, r6, r7, r8, r9, sl, lr}
+ldr r5, [r0, #52]   @ 0x34
+mov     r0, #255        @ 0xff
+strb    r0, [r5, #3564] @ 0xdec
+pop   {r4, r5, r6, r7, r8, r9, sl, pc}
+```
+
+## Register
+
+r8 sometimes #0, sometimes 0x08141000
+r9 sometimes #1, sometimes 0x08141024
 
 ## Program input analysis
 
@@ -12,7 +28,7 @@ Looking at the assembly code, I find these offsets occur, with some notes based 
 24 // function
 36 // function
 44 // function
-48 // function
+48 // function, no arguments, no results
 72 // u16, wird mit 48 verglichen
 76 // ptr to u32
 80 // ptr to u32, wird mit obigem verglichen
