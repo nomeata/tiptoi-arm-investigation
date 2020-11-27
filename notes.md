@@ -65,9 +65,19 @@ Looking at the assembly code, I find these offsets occur, with some notes based 
 * 124 // function, argument: r5->4
 * 128 // function, argument: array offset from 288, result compared against 0
 * 136 // function
+
+  Occurs exactly once. If replaced with a nop, this turns the pen silent on
+  power on and all fields, but does not crash it (other books still work)
+
+  Running this function twice does not have any obvoius effect.
 * 140 // function, arguments(*h(#288+2*r6), -256, *b(#236+r6), *h(#240+2*r6))
 * 144 // function
 * 148 // function, no args?
+
+  Occurs exactly once. If replaced with a nop, this turns the pen silent on
+  power on and all fields, but does not crash it (other books still work)
+
+  Running this function twice does not have any obvoius effect.
 * 156 // function (similar context as 144+148)
 * 164 // function
 * 176 // ptr, ziel 1. argument von #44
@@ -87,7 +97,9 @@ Looking at the assembly code, I find these offsets occur, with some notes based 
 * 304 // arg to #44
 * 308 // ptr to array or something
 * 312 // ptr to something that gets counted up
-* 396 // function
+* 396 // function.
+
+  Occurs exactly once. Argument is #43. Weglassen hat keinen sichtbaren Effekt.
 
 
 
