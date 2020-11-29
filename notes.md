@@ -71,22 +71,40 @@ Looking at the assembly code, I find these offsets occur, with some notes based 
 
   Running this function twice does not have any obvoius effect.
 * 140 // function, arguments(*h(#288+2*r6), -256, *b(#236+r6), *h(#240+2*r6))
+
+  If replaced with a nop, this turns the pen silent on
+  power on and all fields, but does not crash it (other books still work)
+
+  Passing the first element of these arrays (as in x0854-x0878) in an otherwise empty file does not seem to do anything.
 * 144 // function
 * 148 // function, no args?
 
   Occurs exactly once. If replaced with a nop, this turns the pen silent on
   power on and all fields, but does not crash it (other books still work)
 
-  Running this function twice does not have any obvoius effect.
+  Running this function twice does not have any obvious effect.
 * 156 // function (similar context as 144+148)
 * 164 // function
 * 176 // ptr, ziel 1. argument von #44
 * 188 // ptr, ziel finishes loop around #128
 * 192 // ptr, target used as addition to to *(#288+3*r6), to be writtento *#200
 * 200 // ptr, target above writes to
-* 204 // ptr, wird mit 1 verglichen
+* 204
+
+  Points to a byte value that the loop counter for x0750-0x7e4
+  The loop index `r6` is used to index into #232 (half-words)
+
+  May execute #140. Arguments to #140 are r6 indexed into #240, #236, #228
+
+  If not executed #140, then r6 written to *(#308 + r7)
+  This branch also bumps r7 and what’s pointed to by #312
+
+  After the loop, *(#308) is used as an index into #240, #236, #232, #228, as arguments to #140
+
+  Skipping that loop (with our without the after-the-loop) crashes the pen.
+
 * 228 // arg to #140
-* 232 // arg to #140
+* 232 // array of half-words
 * 236 // arg to #140
 * 240 // arg to #140
 * 244 // ptr, target compared to r5->#301
