@@ -176,6 +176,7 @@ x028c: add     r0, r0, #64, 30 @ 0x100
 x0290: strh    r1, [r0, #112]  @ 0x70
 x0294: mov     r0, #1
 x0298: bx      lr
+
 x029c: mov     r1, #0
 x02a0: mov     ip, #99 @ 0x63
 x02a4: mov     r2, #0

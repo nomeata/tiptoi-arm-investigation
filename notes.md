@@ -111,6 +111,16 @@ Looking at the assembly code, I find these offsets occur, with some notes based 
 * 272 // ptr, target compared to r5->#4
 * 288 // arg to 128
 * 292 // ptr to thing, offset 82 of that read and written to 120
+
+  See below, this is likely the registers. Offeset 82 is index 41, which is the
+  only one not written by function x029c
+
+  But also offset 120 is relevant! That would be register $60, that is too much...
+
+  Also, *(arg+292)+256 is something else, but only used early in the code.
+
+  Otherwise, not much use of this value here.
+
 * 300 // arg to #44
 * 304 // arg to #44
 * 308 // ptr to array or something
@@ -120,4 +130,22 @@ Looking at the assembly code, I find these offsets occur, with some notes based 
   Occurs exactly once. Argument is #43. Weglassen hat keinen sichtbaren Effekt.
 
 
+## Functions?
 
+x029c - x02e0 is a function.
+
+It is started shortly on `entry`, if “register” $60 == 4 and $41 ≠ 4.
+
+Seems to fill array #292 (of 16 bit words) from [0] to [47] with 0, with exception of
+[42], which becomes [99], and [41], which is not written to.
+
+Compare initial registers, also 48, and $42 == 99 (but $41 == 1)
+```
+Number of registers: 48
+Initial registers: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,99,0,0,0,0,0]
+```
+
+**Conjecture** array #292 is the register array! (But there is more stuff there, too)
+
+
+After the function call (if done or not), $60 := $41.
