@@ -1,0 +1,1899 @@
+.syntax unified
+.arm
+
+
+
+
+x0000: b x049c
+x0004: .ascii "APP_"
+x0008: .ascii "DEMO"
+x000c: .ascii "\0\0\0\0"
+x0010: ldr pc, x0040
+x0014: .word 0xee110f10 @ mrc	15, 0, r0, cr1, cr0, {0}
+x0018: .word 0xe3c00001 @ bic	r0, r0, #1
+x001c: .word 0xee010f10 @ mcr	15, 0, r0, cr1, cr0, {0}
+x0020: ldr r0, x0044
+x0024: mov	r1, #0
+x0028: .word 0xe5801000 @ str	r1, [r0]
+x002c: cmp	r0, r3
+x0030: .word 0x34802004 @ strcc	r2, [r0], #4
+x0034: bcc x002c
+x0038: ldr pc, x0040
+x003c: b x003c
+x0040: .word 0x0813249c @ ldmdaeq	r3, {r2, r3, r4, r7, sl, sp}
+x0044: .word 0x04000034 @ streq	r0, [r0], #-52	; 0xffffffcc
+x0048: ldr r2, x02a8
+x004c: mov	r1, #100	@ 0x64
+x0050: ldrh	r3, [r2, #16]
+x0054: .word 0xe0833001 @ add	r3, r3, r1
+x0058: .word 0xe3c33b40 @ bic	r3, r3, #64, 22	; 0x10000
+x005c: b x0078
+x0060: .word 0xe082c081 @ add	ip, r2, r1, lsl #1
+x0064: ldrh	ip, [ip]
+x0068: cmp	ip, r0
+x006c: beq x0080
+x0070: .word 0xe2811001 @ add	r1, r1, #1
+x0074: .word 0xe3c11b40 @ bic	r1, r1, #64, 22	; 0x10000
+x0078: cmp	r1, r3
+x007c: bcc x0060
+x0080: .word 0xe2410064 @ sub	r0, r1, #100	; 0x64
+x0084: .word 0xe1a01800 @ lsl	r1, r0, #16
+x0088: .word 0xe1a01821 @ lsr	r1, r1, #16
+x008c: mov	r0, #0
+x0090: .word 0xe0823080 @ add	r3, r2, r0, lsl #1
+x0094: ldrh	r3, [r3]
+x0098: .word 0xe2800001 @ add	r0, r0, #1
+x009c: cmp	r3, r1
+x00a0: .word 0x93c00b40 @ bicls	r0, r0, #64, 22	; 0x10000
+x00a4: .word 0x9a000001 @ bls	0xb0
+x00a8: and	r0, r0, #255	@ 0xff
+x00ac: bx	lr
+x00b0: cmp	r0, #9
+x00b4: bcc x0090
+x00b8: mov	r0, #0
+x00bc: bx	lr
+x00c0: push	{r2, r3, r4, r5, r6, r7, r8, r9, sl, lr}
+x00c4: ldr	r3, [r1, #36]	@ 0x24
+x00c8: mov	r7, r2
+x00cc: mov	r4, r1
+x00d0: mov	r1, #113	@ 0x71
+x00d4: mov	r2, #0
+x00d8: mov	r6, #0
+x00dc: mov	r5, r0
+x00e0: .word 0xe12fff33 @ blx	r3
+x00e4: ldr	r3, [r4, #24]
+x00e8: mov	r2, #4
+x00ec: mov	r1, sp
+x00f0: mov	r0, r5
+x00f4: .word 0xe12fff33 @ blx	r3
+x00f8: ldr	r3, [r4, #36]	@ 0x24
+x00fc: ldr	r1, [sp]
+x0100: mov	r2, #0
+x0104: mov	r0, r5
+x0108: .word 0xe12fff33 @ blx	r3
+x010c: ldr	r3, [r4, #24]
+x0110: mov	r2, #2
+x0114: .word 0xe28d1004 @ add	r1, sp, #4
+x0118: mov	r0, r5
+x011c: .word 0xe12fff33 @ blx	r3
+x0120: ldrh	r0, [sp, #4]
+x0124: cmp	r0, #0
+x0128: beq x0148
+x012c: ldrh	r0, [sp, #4]
+x0130: cmp	r0, r7
+x0134: .word 0x8a00000b @ bhi	0x168
+x0138: ldr	r2, [r4, #8]
+x013c: mov	r1, r7
+x0140: .word 0xe28f0f59 @ add	r0, pc, #356	; 0x164
+x0144: .word 0xe12fff32 @ blx	r2
+x0148: pop	{r2, r3, r4, r5, r6, r7, r8, r9, sl, pc}
+x014c: mov	r2, #4
+x0150: ldr	r3, [r4, #24]
+x0154: .word 0xe08d1002 @ add	r1, sp, r2
+x0158: mov	r0, r5
+x015c: .word 0xe12fff33 @ blx	r3
+x0160: .word 0xe2860001 @ add	r0, r6, #1
+x0164: .word 0xe3c06b40 @ bic	r6, r0, #64, 22	; 0x10000
+x0168: cmp	r6, r7
+x016c: bcc x014c
+x0170: mov	r2, #4
+x0174: ldr	r3, [r4, #24]
+x0178: .word 0xe08d1002 @ add	r1, sp, r2
+x017c: mov	r0, r5
+x0180: .word 0xe12fff33 @ blx	r3
+x0184: ldr	r0, [sp, #4]
+x0188: ldr	r1, [sp, #4]
+x018c: .word 0xe2800002 @ add	r0, r0, #2
+x0190: .word 0xe58d0000 @ str	r0, [sp]
+x0194: ldr	r3, [r4, #36]	@ 0x24
+x0198: mov	r0, r5
+x019c: mov	r2, #0
+x01a0: .word 0xe12fff33 @ blx	r3
+x01a4: ldr	r3, [r4, #24]
+x01a8: mov	r2, #2
+x01ac: .word 0xe28d1004 @ add	r1, sp, #4
+x01b0: mov	r0, r5
+x01b4: .word 0xe12fff33 @ blx	r3
+x01b8: ldrh	r0, [sp, #4]
+x01bc: ldr r8, x02c4
+x01c0: ands	r0, r0, #255	@ 0xff
+x01c4: .word 0xe5c80002 @ strb	r0, [r8, #2]
+x01c8: beq x0148
+x01cc: mov	r6, #0
+x01d0: ldr r9, x02c8
+x01d4: ldr sl, x02cc
+x01d8: b x0298
+x01dc: ldr	r0, [sp]
+x01e0: ldr	r3, [r4, #36]	@ 0x24
+x01e4: .word 0xe0801086 @ add	r1, r0, r6, lsl #1
+x01e8: mov	r0, r5
+x01ec: mov	r2, #0
+x01f0: .word 0xe12fff33 @ blx	r3
+x01f4: ldr	r3, [r4, #24]
+x01f8: mov	r2, #2
+x01fc: .word 0xe28d1004 @ add	r1, sp, #4
+x0200: mov	r0, r5
+x0204: .word 0xe12fff33 @ blx	r3
+x0208: ldrh	r7, [sp, #4]
+x020c: mov	r0, r4
+x0210: mov	r1, r7
+x0214: .word 0xeb000321 @ bl	0xea0
+x0218: ldr	r3, [r4, #36]	@ 0x24
+x021c: mov	r2, #0
+x0220: mov	r1, #4
+x0224: mov	r0, r5
+x0228: .word 0xe12fff33 @ blx	r3
+x022c: mov	r2, #4
+x0230: ldr	r3, [r4, #24]
+x0234: .word 0xe08d1002 @ add	r1, sp, r2
+x0238: mov	r0, r5
+x023c: .word 0xe12fff33 @ blx	r3
+x0240: ldr	r0, [sp, #4]
+x0244: ldr	r3, [r4, #36]	@ 0x24
+x0248: .word 0xe0801187 @ add	r1, r0, r7, lsl #3
+x024c: mov	r0, r5
+x0250: mov	r2, #0
+x0254: .word 0xe12fff33 @ blx	r3
+x0258: mov	r2, #4
+x025c: ldr	r3, [r4, #24]
+x0260: .word 0xe08d1002 @ add	r1, sp, r2
+x0264: mov	r0, r5
+x0268: .word 0xe12fff33 @ blx	r3
+x026c: ldr	r0, [sp, #4]
+x0270: mov	r2, #4
+x0274: .word 0xe78a0106 @ str	r0, [sl, r6, lsl #2]
+x0278: ldr	r3, [r4, #24]
+x027c: mov	r0, r5
+x0280: .word 0xe08d1002 @ add	r1, sp, r2
+x0284: .word 0xe12fff33 @ blx	r3
+x0288: ldr	r0, [sp, #4]
+x028c: .word 0xe7890106 @ str	r0, [r9, r6, lsl #2]
+x0290: .word 0xe2860001 @ add	r0, r6, #1
+x0294: .word 0xe3c06b40 @ bic	r6, r0, #64, 22	; 0x10000
+x0298: ldrb	r0, [r8, #2]
+x029c: cmp	r6, r0
+x02a0: bcc x01dc
+x02a4: b x0148
+x02a8: .word 0x0813313c @ ldmdaeq	r3, {r2, r3, r4, r5, r8, ip, sp}
+x02ac: .ascii "offs"
+x02b0: .ascii "et ="
+x02b4: .word 0x2c782520 @ cfldr64cs	mvdx2, [r8], #-128	; 0xffffff80
+x02b8: .ascii "wron"
+x02bc: .ascii "g.\r\n"
+x02c0: .ascii "\0\0\0\0"
+x02c4: .word 0x08141000 @ ldmdaeq	r4, {ip}
+x02c8: .word 0x08141088 @ ldmdaeq	r4, {r3, r7, ip}
+x02cc: .word 0x08141008 @ ldmdaeq	r4, {r3, ip}
+x02d0: ldr ip, x02c4
+x02d4: ldr r3, x02cc
+x02d8: ldrb	r0, [ip, #5]
+x02dc: .word 0xe7831100 @ str	r1, [r3, r0, lsl #2]
+x02e0: ldr r1, x02c8
+x02e4: .word 0xe7812100 @ str	r2, [r1, r0, lsl #2]
+x02e8: .word 0xe2800001 @ add	r0, r0, #1
+x02ec: .word 0xe5cc0005 @ strb	r0, [ip, #5]
+x02f0: bx	lr
+x02f4: push	{r3, r4, r5, r6, r7, r8, r9, lr}
+x02f8: mov	r4, r0
+x02fc: mov	r0, r1
+x0300: mov	r1, r2
+x0304: mov	r2, r3
+x0308: ldr	r3, [sp, #32]
+x030c: .word 0xe251ccf0 @ subs	ip, r1, #240, 24	; 0xf000
+x0310: .word 0xa25ccefe @ subsge	ip, ip, #4064	; 0xfe0
+x0314: ldr	r5, [r4, #52]	@ 0x34
+x0318: mov	r9, r4
+x031c: mov	r8, #1
+x0320: mov	r6, r3
+x0324: beq x03a0
+x0328: .word 0xca000011 @ bgt	0x374
+x032c: and	r7, r3, #255	@ 0xff
+x0330: .word 0xe1a0c423 @ lsr	ip, r3, #8
+x0334: cmp	r1, #64256	@ 0xfb00
+x0338: .ascii "C\0\0\n"
+x033c: cmp	r1, #252, 24	@ 0xfc00
+x0340: beq x03f8
+x0344: .word 0xe241ccff @ sub	ip, r1, #65280	; 0xff00
+x0348: .word 0xe25cc0a1 @ subs	ip, ip, #161	; 0xa1
+x034c: .word 0x1a00004e @ bne	0x48c
+x0350: ldr	r0, [r4, #400]	@ 0x190
+x0354: .word 0xe12fff30 @ blx	r0
+x0358: mov	r1, #0
+x035c: .word 0xe5c51ddf @ strb	r1, [r5, #3551]	; 0xddf
+x0360: .word 0xe3100001 @ tst	r0, #1
+x0364: .word 0x1a000037 @ bne	0x448
+x0368: .word 0xe5c57de0 @ strb	r7, [r5, #3552]	; 0xde0
+x036c: .word 0xe5c58ddf @ strb	r8, [r5, #3551]	; 0xddf
+x0370: b x038c
+x0374: .word 0xe241ccff @ sub	ip, r1, #65280	; 0xff00
+x0378: .word 0xe25cc0e1 @ subs	ip, ip, #225	; 0xe1
+x037c: beq x03c0
+x0380: .word 0xe241ccfc @ sub	ip, r1, #252, 24	; 0xfc00
+x0384: .word 0xe25ccffa @ subs	ip, ip, #1000	; 0x3e8
+x0388: .word 0x1a00003f @ bne	0x48c
+x038c: ldr	r0, [r4, #304]	@ 0x130
+x0390: ldr	r2, [r0, r6, lsl #2]
+x0394: ldr	r0, [r4, #300]	@ 0x12c
+x0398: ldr	r1, [r0, r6, lsl #2]
+x039c: b x0440
+x03a0: ldr	r0, [r4, #400]	@ 0x190
+x03a4: .word 0xe12fff30 @ blx	r0
+x03a8: mov	r1, r0
+x03ac: ldr	r0, [r4, #244]	@ 0xf4
+x03b0: ldrh	r0, [r0]
+x03b4: .word 0xeb0002bb @ bl	0xea8
+x03b8: and	r0, r1, #255	@ 0xff
+x03bc: b x0430
+x03c0: ldr	r0, [r4, #244]	@ 0xf4
+x03c4: ldrh	r0, [r0]
+x03c8: cmp	r0, #1
+x03cc: ldr	r0, [r4, #304]	@ 0x130
+x03d0: ldr	r2, [r0]
+x03d4: ldr	r0, [r4, #300]	@ 0x12c
+x03d8: ldr	r1, [r0]
+x03dc: .word 0x9a000017 @ bls	0x440
+x03e0: mov	r0, r9
+x03e4: .word 0xebffffb9 @ bl	0x2d0
+x03e8: .word 0xe5c5812c @ strb	r8, [r5, #300]	; 0x12c
+x03ec: ldrb	r0, [r5, #301]	@ 0x12d
+x03f0: .word 0xe2800001 @ add	r0, r0, #1
+x03f4: b x0484
+x03f8: ldr	r0, [r4, #244]	@ 0xf4
+x03fc: mov	r6, ip
+x0400: ldrh	r0, [r0]
+x0404: cmp	r0, r7
+x0408: .word 0x9a00000e @ bls	0x448
+x040c: ldr	r0, [r4, #400]	@ 0x190
+x0410: .word 0xe12fff30 @ blx	r0
+x0414: mov	r1, r0
+x0418: .word 0xe0470006 @ sub	r0, r7, r6
+x041c: .word 0xe2800001 @ add	r0, r0, #1
+x0420: .word 0xeb0002a0 @ bl	0xea8
+x0424: .word 0xe0810006 @ add	r0, r1, r6
+x0428: and	r0, r0, #255	@ 0xff
+x042c: .word 0xe5c50142 @ strb	r0, [r5, #322]	; 0x142
+x0430: ldr	r1, [r4, #304]	@ 0x130
+x0434: ldr	r2, [r1, r0, lsl #2]
+x0438: ldr	r1, [r4, #300]	@ 0x12c
+x043c: ldr	r1, [r1, r0, lsl #2]
+x0440: mov	r0, r9
+x0444: .word 0xebffffa1 @ bl	0x2d0
+x0448: pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+x044c: mov	r6, ip
+x0450: .word 0xe5c5712e @ strb	r7, [r5, #302]	; 0x12e
+x0454: cmp	ip, r7
+x0458: beq x038c
+x045c: bcs x0448
+x0460: ldr	r0, [r4, #304]	@ 0x130
+x0464: ldr	r2, [r0, r6, lsl #2]
+x0468: ldr	r0, [r4, #300]	@ 0x12c
+x046c: ldr	r1, [r0, r6, lsl #2]
+x0470: mov	r0, r9
+x0474: .word 0xebffff95 @ bl	0x2d0
+x0478: mov	r0, #2
+x047c: .word 0xe5c5012c @ strb	r0, [r5, #300]	; 0x12c
+x0480: .word 0xe2860001 @ add	r0, r6, #1
+x0484: .word 0xe5c5012d @ strb	r0, [r5, #301]	; 0x12d
+x0488: b x0448
+x048c: ldr	ip, [r4, #140]	@ 0x8c
+x0490: .word 0xe28dd004 @ add	sp, sp, #4
+x0494: pop	{r4, r5, r6, r7, r8, r9, lr}
+x0498: bx	ip
+x049c: push	{r2, r3, r4, r5, r6, r7, r8, r9, sl, lr}
+x04a0: ldr	r5, [r0, #52]	@ 0x34
+x04a4: mov	r4, r0
+x04a8: ldrb	r0, [r5, #293]	@ 0x125
+x04ac: ldr sl, x02c4
+x04b0: mov	r9, #0
+x04b4: .word 0xe2800001 @ add	r0, r0, #1
+x04b8: .word 0xe5c50125 @ strb	r0, [r5, #293]	; 0x125
+x04bc: ldrb	r0, [r5, #3564]	@ 0xdec
+x04c0: mov	r8, #1
+x04c4: mov	r6, #0
+x04c8: cmp	r0, #0
+x04cc: .word 0x1a000008 @ bne	0x4f4
+x04d0: .word 0xe5c58dec @ strb	r8, [r5, #3564]	; 0xdec
+x04d4: .word 0xe5ca9000 @ strb	r9, [sl]
+x04d8: .word 0xe5ca9001 @ strb	r9, [sl, #1]
+x04dc: .word 0xe5ca9002 @ strb	r9, [sl, #2]
+x04e0: .word 0xe5ca9003 @ strb	r9, [sl, #3]
+x04e4: .word 0xe5ca9005 @ strb	r9, [sl, #5]
+x04e8: .word 0xe5ca9004 @ strb	r9, [sl, #4]
+x04ec: .word 0xe5ca9006 @ strb	r9, [sl, #6]
+x04f0: pop	{r2, r3, r4, r5, r6, r7, r8, r9, sl, pc}
+x04f4: cmp	r0, #1
+x04f8: .word 0x1afffffc @ bne	0x4f0
+x04fc: ldrb	r0, [r5, #88]	@ 0x58
+x0500: cmp	r0, #100	@ 0x64
+x0504: .word 0x1a000006 @ bne	0x524
+x0508: .word 0xe5c59058 @ strb	r9, [r5, #88]	; 0x58
+x050c: ldr	r1, [r4, #72]	@ 0x48
+x0510: ldr r0, x08ac
+x0514: .word 0xe1c100b0 @ strh	r0, [r1]
+x0518: .word 0xe5c58000 @ strb	r8, [r5]
+x051c: ldr	r0, [r5, #116]	@ 0x74
+x0520: .word 0xe5850004 @ str	r0, [r5, #4]
+x0524: ldr	r0, [r4, #72]	@ 0x48
+x0528: ldrh	r0, [r0]
+x052c: cmp	r0, #48	@ 0x30
+x0530: ldreq	r0, [r4, #80]	@ 0x50
+x0534: ldreq	r1, [r4, #76]	@ 0x4c
+x0538: ldreq	r0, [r0]
+x053c: ldreq	r1, [r1]
+x0540: cmpeq	r0, r1
+x0544: ldrbeq	r0, [r5, #298]	@ 0x12a
+x0548: cmpeq	r0, #0
+x054c: ldrbeq	r0, [r5, #300]	@ 0x12c
+x0550: cmpeq	r0, #0
+x0554: ldrbeq	r0, [r5, #296]	@ 0x128
+x0558: cmpeq	r0, #0
+x055c: .word 0x1a00001d @ bne	0x5d8
+x0560: ldr	r1, [r4, #8]
+x0564: .word 0xe28f0fd1 @ add	r0, pc, #836	; 0x344
+x0568: .word 0xe12fff31 @ blx	r1
+x056c: ldr	r0, [r4, #156]	@ 0x9c
+x0570: .word 0xe12fff30 @ blx	r0
+x0574: ldr	r0, [r4, #164]	@ 0xa4
+x0578: .word 0xe12fff30 @ blx	r0
+x057c: b x05c8
+x0580: ldr	r0, [r4, #288]	@ 0x120
+x0584: ldr	r0, [r0, r6, lsl #2]
+x0588: ldr	r1, [r4, #128]	@ 0x80
+x058c: .word 0xe12fff31 @ blx	r1
+x0590: cmp	r0, #0
+x0594: .word 0x02860001 @ addeq	r0, r6, #1
+x0598: .word 0x03c06b40 @ biceq	r6, r0, #64, 22	; 0x10000
+x059c: beq x05c8
+x05a0: .word 0xe5c58128 @ strb	r8, [r5, #296]	; 0x128
+x05a4: ldr	r1, [r4, #192]	@ 0xc0
+x05a8: ldr	r0, [r4, #288]	@ 0x120
+x05ac: ldrh	r1, [r1]
+x05b0: ldr	r0, [r0, r6, lsl #2]
+x05b4: .word 0xe0800181 @ add	r0, r0, r1, lsl #3
+x05b8: ldr	r1, [r4, #200]	@ 0xc8
+x05bc: .word 0xe2800002 @ add	r0, r0, #2
+x05c0: .word 0xe5810000 @ str	r0, [r1]
+x05c4: b x05d8
+x05c8: ldr	r0, [r4, #188]	@ 0xbc
+x05cc: ldrh	r0, [r0]
+x05d0: cmp	r0, r6
+x05d4: .word 0x8affffe9 @ bhi	0x580
+x05d8: ldr	r0, [r4, #72]	@ 0x48
+x05dc: ldrh	r0, [r0]
+x05e0: .word 0xe240cd40 @ sub	ip, r0, #64, 26	; 0x1000
+x05e4: .word 0xe25cc060 @ subs	ip, ip, #96	; 0x60
+x05e8: .word 0x1a000109 @ bne	0xa14
+x05ec: ldrb	r0, [r5]
+x05f0: cmp	r0, #0
+x05f4: beq x0a14
+x05f8: .word 0xe5c59000 @ strb	r9, [r5]
+x05fc: ldr	r0, [r5, #4]
+x0600: ldr r7, x02a8
+x0604: cmp	r0, #8000	@ 0x1f40
+x0608: ldreq	r0, [r4, #320]	@ 0x140
+x060c: beq x0620
+x0610: .word 0xe240cd7c @ sub	ip, r0, #124, 26	; 0x1f00
+x0614: .word 0xe25cc041 @ subs	ip, ip, #65	; 0x41
+x0618: .word 0x1a000002 @ bne	0x628
+x061c: ldr	r0, [r4, #316]	@ 0x13c
+x0620: ldrh	r0, [r0]
+x0624: b x063c
+x0628: ldr	r1, [r4, #272]	@ 0x110
+x062c: ldr	r1, [r1]
+x0630: cmp	r0, r1
+x0634: .word 0x1a000001 @ bne	0x640
+x0638: ldrh	r0, [r7, #200]	@ 0xc8
+x063c: .word 0xe5850004 @ str	r0, [r5, #4]
+x0640: ldr	r0, [r5, #4]
+x0644: .word 0xe1a00800 @ lsl	r0, r0, #16
+x0648: .word 0xe1a00820 @ lsr	r0, r0, #16
+x064c: .word 0xebfffe7d @ bl	0x48
+x0650: ldr	r1, [r5, #4]
+x0654: ldr	r3, [r4, #8]
+x0658: mov	r6, r0
+x065c: mov	r2, r0
+x0660: .word 0xe28f0f9b @ add	r0, pc, #620	; 0x26c
+x0664: .word 0xe12fff33 @ blx	r3
+x0668: ldrb	r0, [sl, #4]
+x066c: cmp	r0, r6
+x0670: cmpne	r6, #0
+x0674: ldrne	r1, [r4, #316]	@ 0x13c
+x0678: ldrne	r0, [r5, #4]
+x067c: ldrhne	r1, [r1]
+x0680: cmpne	r0, r1
+x0684: ldrne	r1, [r4, #320]	@ 0x140
+x0688: ldrhne	r1, [r1]
+x068c: cmpne	r0, r1
+x0690: beq x06b8
+x0694: .word 0xe5ca6004 @ strb	r6, [sl, #4]
+x0698: mov	r0, #3
+x069c: ldr	r1, [r4, #292]	@ 0x124
+x06a0: .word 0xe0811080 @ add	r1, r1, r0, lsl #1
+x06a4: .word 0xe2800001 @ add	r0, r0, #1
+x06a8: .word 0xe3c00b40 @ bic	r0, r0, #64, 22	; 0x10000
+x06ac: cmp	r0, #160	@ 0xa0
+x06b0: .word 0xe1c190b0 @ strh	r9, [r1]
+x06b4: bcc x069c
+x06b8: ldrb	r0, [sl, #6]
+x06bc: cmp	r0, #1
+x06c0: .word 0x1a000003 @ bne	0x6d4
+x06c4: ldrb	r0, [sl, #4]
+x06c8: cmp	r0, #1
+x06cc: ldrhi	r0, [r4, #292]	@ 0x124
+x06d0: .word 0x81c080b0 @ strhhi	r8, [r0]
+x06d4: ldr	r0, [r5, #4]
+x06d8: cmp	r0, #1
+x06dc: bcc x0758
+x06e0: .word 0xe250cfc0 @ subs	ip, r0, #192, 30	; 0x300
+x06e4: .word 0x225cc0e7 @ subscs	ip, ip, #231	; 0xe7
+x06e8: .word 0x8a00001a @ bhi	0x758
+x06ec: ldr	r0, [r4, #100]	@ 0x64
+x06f0: .word 0xe5c09000 @ strb	r9, [r0]
+x06f4: ldr	r1, [r4, #272]	@ 0x110
+x06f8: ldr	r0, [r5, #4]
+x06fc: ldr	r1, [r1]
+x0700: cmp	r0, r1
+x0704: beq x0744
+x0708: ldr	r0, [r4, #12]
+x070c: .word 0xe12fff30 @ blx	r0
+x0710: cmp	r0, #0
+x0714: ldrne	r0, [r4, #48]	@ 0x30
+x0718: .word 0x112fff30 @ blxne	r0
+x071c: ldr	r1, [r4, #8]
+x0720: .word 0xe28f0f73 @ add	r0, pc, #460	; 0x1cc
+x0724: .word 0xe12fff31 @ blx	r1
+x0728: mov	r0, #100	@ 0x64
+x072c: .word 0xe5c50058 @ strb	r0, [r5, #88]	; 0x58
+x0730: ldr	r0, [r5, #4]
+x0734: .word 0xe5850074 @ str	r0, [r5, #116]	; 0x74
+x0738: mov	r0, #255	@ 0xff
+x073c: .word 0xe5c50dec @ strb	r0, [r5, #3564]	; 0xdec
+x0740: b x04f0
+x0744: ldrh	r1, [r7, #202]	@ 0xca
+x0748: .word 0xe28f0f6f @ add	r0, pc, #444	; 0x1bc
+x074c: .word 0xe5851004 @ str	r1, [r5, #4]
+x0750: ldr	r2, [r4, #8]
+x0754: .word 0xe12fff32 @ blx	r2
+x0758: ldr	r1, [r4, #316]	@ 0x13c
+x075c: ldr	r0, [r5, #4]
+x0760: ldrh	r1, [r1]
+x0764: cmp	r0, r1
+x0768: .word 0x1a000019 @ bne	0x7d4
+x076c: ldr	r0, [r4, #48]	@ 0x30
+x0770: .word 0xe12fff30 @ blx	r0
+x0774: ldr	r0, [r4, #100]	@ 0x64
+x0778: .word 0xe5c09000 @ strb	r9, [r0]
+x077c: ldrb	r0, [sl, #5]
+x0780: cmp	r0, #0
+x0784: .word 0x15ca0002 @ strbne	r0, [sl, #2]
+x0788: ldreq	r0, [r4, #96]	@ 0x60
+x078c: .word 0x15ca9000 @ strbne	r9, [sl]
+x0790: ldrbeq	r0, [r0]
+x0794: .word 0x15ca9003 @ strbne	r9, [sl, #3]
+x0798: .word 0x05ca0000 @ strbeq	r0, [sl]
+x079c: ldr	r2, [r4, #8]
+x07a0: ldrb	r1, [sl]
+x07a4: .word 0xe28f0f61 @ add	r0, pc, #388	; 0x184
+x07a8: .word 0xe12fff32 @ blx	r2
+x07ac: ldrb	r0, [sl]
+x07b0: cmp	r0, #0
+x07b4: beq x04f0
+x07b8: .word 0xe5c5912c @ strb	r9, [r5, #300]	; 0x12c
+x07bc: .word 0xe5c5912d @ strb	r9, [r5, #301]	; 0x12d
+x07c0: .word 0xe5c5912a @ strb	r9, [r5, #298]	; 0x12a
+x07c4: .word 0xe5c5912b @ strb	r9, [r5, #299]	; 0x12b
+x07c8: .word 0xe5c5912e @ strb	r9, [r5, #302]	; 0x12e
+x07cc: .word 0xe5ca9001 @ strb	r9, [sl, #1]
+x07d0: b x0a14
+x07d4: ldr	r1, [r4, #320]	@ 0x140
+x07d8: ldrh	r1, [r1]
+x07dc: cmp	r0, r1
+x07e0: .word 0x1a000009 @ bne	0x80c
+x07e4: ldr	r0, [r4, #48]	@ 0x30
+x07e8: .word 0xe12fff30 @ blx	r0
+x07ec: .word 0xe5c5912c @ strb	r9, [r5, #300]	; 0x12c
+x07f0: .word 0xe5c5912d @ strb	r9, [r5, #301]	; 0x12d
+x07f4: .word 0xe5c5912a @ strb	r9, [r5, #298]	; 0x12a
+x07f8: .word 0xe5c5912b @ strb	r9, [r5, #299]	; 0x12b
+x07fc: .word 0xe5c5912e @ strb	r9, [r5, #302]	; 0x12e
+x0800: .word 0xe5ca9000 @ strb	r9, [sl]
+x0804: .word 0xe5ca9002 @ strb	r9, [sl, #2]
+x0808: b x0a14
+x080c: ldrh	r1, [r5, #24]
+x0810: cmp	r0, r1
+x0814: bcc x0824
+x0818: ldrh	r2, [r5, #26]
+x081c: cmp	r0, r2
+x0820: .word 0x9a000003 @ bls	0x834
+x0824: ldr	r2, [r4, #272]	@ 0x110
+x0828: ldr	r2, [r2]
+x082c: cmp	r0, r2
+x0830: .word 0x1a000064 @ bne	0x9c8
+x0834: ldr	r0, [r4, #48]	@ 0x30
+x0838: .word 0xe12fff30 @ blx	r0
+x083c: .word 0xe5ca9005 @ strb	r9, [sl, #5]
+x0840: .word 0xe5ca9003 @ strb	r9, [sl, #3]
+x0844: .word 0xe5ca9002 @ strb	r9, [sl, #2]
+x0848: .word 0xe5ca9000 @ strb	r9, [sl]
+x084c: .word 0xe5ca9001 @ strb	r9, [sl, #1]
+x0850: ldr	r0, [r4, #100]	@ 0x64
+x0854: .word 0xe5c08000 @ strb	r8, [r0]
+x0858: ldr	r0, [r4, #104]	@ 0x68
+x085c: .word 0xe5c08000 @ strb	r8, [r0]
+x0860: .word 0xe5c5912c @ strb	r9, [r5, #300]	; 0x12c
+x0864: .word 0xe5c5912d @ strb	r9, [r5, #301]	; 0x12d
+x0868: .word 0xe5c5912a @ strb	r9, [r5, #298]	; 0x12a
+x086c: .word 0xe5c5912b @ strb	r9, [r5, #299]	; 0x12b
+x0870: .word 0xe5c5912e @ strb	r9, [r5, #302]	; 0x12e
+x0874: .word 0xe5c59132 @ strb	r9, [r5, #306]	; 0x132
+x0878: ldr	r0, [r4, #156]	@ 0x9c
+x087c: .word 0xe12fff30 @ blx	r0
+x0880: .word 0xe5c59014 @ strb	r9, [r5, #20]
+x0884: ldr	r0, [r5, #4]
+x0888: ldr	r1, [r4, #124]	@ 0x7c
+x088c: .word 0xe12fff31 @ blx	r1
+x0890: ldr	r0, [r4, #188]	@ 0xbc
+x0894: ldrh	r1, [r0]
+x0898: ldr	r2, [r4, #8]
+x089c: .word 0xe28f00a8 @ add	r0, pc, #168	; 0xa8
+x08a0: .word 0xe12fff32 @ blx	r2
+x08a4: mov	r6, #0
+x08a8: b x09b0
+x08ac: andeq	r1, r0, r0, rrx
+x08b0: .ascii "Star"
+x08b4: .ascii "t Re"
+x08b8: .ascii "ad T"
+x08bc: .ascii "imer"
+x08c0: .ascii " Con"
+x08c4: .ascii "tion"
+x08c8: .ascii " Tab"
+x08cc: .ascii "le.\r"
+x08d0: .ascii "\n\0\0\0"
+x08d4: .ascii "(07-"
+x08d8: .ascii "26)D"
+x08dc: .ascii "ata "
+x08e0: .ascii "= %d"
+x08e4: .ascii ". PA"
+x08e8: .ascii "GE=%"
+x08ec: .ascii "d.\r\n"
+x08f0: .ascii "\0\0\0\0"
+x08f4: .ascii "New "
+x08f8: .ascii "Sele"
+x08fc: .ascii "ct B"
+x0900: .ascii "ook "
+x0904: .ascii "Code"
+x0908: .ascii ".\r\n\0"
+x090c: .ascii "fpAk"
+x0910: .ascii "OidP"
+x0914: .ascii "ara-"
+x0918: .ascii ">Oid"
+x091c: .ascii "Rece"
+x0920: .ascii "iveD"
+x0924: .ascii "ata="
+x0928: .ascii "%d.\r"
+x092c: .ascii "\n\0\0\0"
+x0930: .ascii "Repe"
+x0934: .ascii "at V"
+x0938: .ascii "oice"
+x093c: .ascii " Num"
+x0940: .ascii "ber "
+x0944: .ascii "= %d"
+x0948: .ascii ".\r\n\0"
+x094c: .ascii "Cond"
+x0950: .ascii "itio"
+x0954: .ascii "nNum"
+x0958: .ascii "ber "
+x095c: .ascii "= %d"
+x0960: .ascii ".\r\n\0"
+x0964: ldr	r0, [r4, #288]	@ 0x120
+x0968: ldr	r0, [r0, r6, lsl #2]
+x096c: ldr	r1, [r4, #128]	@ 0x80
+x0970: .word 0xe12fff31 @ blx	r1
+x0974: cmp	r0, #0
+x0978: .word 0x02860001 @ addeq	r0, r6, #1
+x097c: .word 0x03c06b40 @ biceq	r6, r0, #64, 22	; 0x10000
+x0980: .ascii "\n\0\0\n"
+x0984: .word 0xe5c58128 @ strb	r8, [r5, #296]	; 0x128
+x0988: .word 0xe5c56129 @ strb	r6, [r5, #297]	; 0x129
+x098c: ldr	r1, [r4, #192]	@ 0xc0
+x0990: ldr	r0, [r4, #288]	@ 0x120
+x0994: ldrh	r1, [r1]
+x0998: ldr	r0, [r0, r6, lsl #2]
+x099c: .word 0xe0800181 @ add	r0, r0, r1, lsl #3
+x09a0: ldr	r1, [r4, #200]	@ 0xc8
+x09a4: .word 0xe2800002 @ add	r0, r0, #2
+x09a8: .word 0xe5810000 @ str	r0, [r1]
+x09ac: b x09c0
+x09b0: ldr	r0, [r4, #188]	@ 0xbc
+x09b4: ldrh	r0, [r0]
+x09b8: cmp	r0, r6
+x09bc: .word 0x8affffe8 @ bhi	0x964
+x09c0: .word 0xe5c58014 @ strb	r8, [r5, #20]
+x09c4: b x0a14
+x09c8: cmp	r0, r1
+x09cc: bcc x09dc
+x09d0: ldrh	r1, [r5, #26]
+x09d4: cmp	r0, r1
+x09d8: .word 0x9a00000d @ bls	0xa14
+x09dc: ldr	r0, [r4, #100]	@ 0x64
+x09e0: .word 0xe5c09000 @ strb	r9, [r0]
+x09e4: .word 0xe5c5912c @ strb	r9, [r5, #300]	; 0x12c
+x09e8: .word 0xe5c5912d @ strb	r9, [r5, #301]	; 0x12d
+x09ec: .word 0xe5c5912a @ strb	r9, [r5, #298]	; 0x12a
+x09f0: .word 0xe5c5912b @ strb	r9, [r5, #299]	; 0x12b
+x09f4: .word 0xe5c5912e @ strb	r9, [r5, #302]	; 0x12e
+x09f8: ldr	r1, [r5, #4]
+x09fc: ldr	r2, [r4, #8]
+x0a00: .word 0xe28f0feb @ add	r0, pc, #940	; 0x3ac
+x0a04: .word 0xe12fff32 @ blx	r2
+x0a08: ldr	r1, [r4, #396]	@ 0x18c
+x0a0c: mov	r0, #43	@ 0x2b
+x0a10: .word 0xe12fff31 @ blx	r1
+x0a14: ldrb	r0, [r5, #296]	@ 0x128
+x0a18: cmp	r0, #1
+x0a1c: .word 0x1a00004c @ bne	0xb54
+x0a20: ldr	r0, [r4, #136]	@ 0x88
+x0a24: .word 0xe12fff30 @ blx	r0
+x0a28: ldr	r0, [r4, #204]	@ 0xcc
+x0a2c: ldrb	r0, [r0]
+x0a30: cmp	r0, #0
+x0a34: beq x0b2c
+x0a38: ldr	r0, [r4, #144]	@ 0x90
+x0a3c: .word 0xe12fff30 @ blx	r0
+x0a40: ldr	r0, [r4, #148]	@ 0x94
+x0a44: .word 0xe12fff30 @ blx	r0
+x0a48: ldr	r0, [r4, #204]	@ 0xcc
+x0a4c: ldrb	r0, [r0]
+x0a50: cmp	r0, #0
+x0a54: .ascii "4\0\0\n"
+x0a58: mov	r7, #0
+x0a5c: mov	r6, #0
+x0a60: b x0b18
+x0a64: ldr	r0, [r4, #232]	@ 0xe8
+x0a68: .word 0xe0800086 @ add	r0, r0, r6, lsl #1
+x0a6c: ldrh	r1, [r0]
+x0a70: .word 0xe251ccff @ subs	ip, r1, #65280	; 0xff00
+x0a74: .word 0x225cc0f9 @ subscs	ip, ip, #249	; 0xf9
+x0a78: .word 0x8a000002 @ bhi	0xa88
+x0a7c: .word 0xe251ccf0 @ subs	ip, r1, #240, 24	; 0xf000
+x0a80: .word 0x225cceff @ subscs	ip, ip, #4080	; 0xff0
+x0a84: bcs x0a90
+x0a88: cmp	r1, #65280	@ 0xff00
+x0a8c: .word 0x1a000017 @ bne	0xaf0
+x0a90: ldr	r0, [r4, #240]	@ 0xf0
+x0a94: ldr	r2, [r4, #236]	@ 0xec
+x0a98: .word 0xe0800086 @ add	r0, r0, r6, lsl #1
+x0a9c: ldrh	r3, [r0]
+x0aa0: ldr	r0, [r4, #228]	@ 0xe4
+x0aa4: ldrb	r2, [r2, r6]
+x0aa8: .word 0xe0800086 @ add	r0, r0, r6, lsl #1
+x0aac: ldrh	r0, [r0]
+x0ab0: ldr	ip, [r4, #140]	@ 0x8c
+x0ab4: .word 0xe12fff3c @ blx	ip
+x0ab8: ldr	r0, [r4, #232]	@ 0xe8
+x0abc: .word 0xe0800086 @ add	r0, r0, r6, lsl #1
+x0ac0: ldrh	r0, [r0]
+x0ac4: .word 0xe240ccff @ sub	ip, r0, #65280	; 0xff00
+x0ac8: .word 0xe25cc0f9 @ subs	ip, ip, #249	; 0xf9
+x0acc: ldreq	r0, [r4, #236]	@ 0xec
+x0ad0: ldrbeq	r0, [r0, r6]
+x0ad4: cmpeq	r0, #1
+x0ad8: ldreq	r0, [r4, #228]	@ 0xe4
+x0adc: .word 0x00800086 @ addeq	r0, r0, r6, lsl #1
+x0ae0: ldrheq	r0, [r0]
+x0ae4: cmpeq	r0, #0
+x0ae8: .word 0x05ca9006 @ strbeq	r9, [sl, #6]
+x0aec: b x0b10
+x0af0: ldr	r0, [r4, #308]	@ 0x134
+x0af4: .word 0xe7c06007 @ strb	r6, [r0, r7]
+x0af8: .word 0xe2870001 @ add	r0, r7, #1
+x0afc: .word 0xe3c07b40 @ bic	r7, r0, #64, 22	; 0x10000
+x0b00: ldr	r0, [r4, #312]	@ 0x138
+x0b04: ldrb	r1, [r0]
+x0b08: .word 0xe2811001 @ add	r1, r1, #1
+x0b0c: .word 0xe5c01000 @ strb	r1, [r0]
+x0b10: .word 0xe2860001 @ add	r0, r6, #1
+x0b14: .word 0xe3c06b40 @ bic	r6, r0, #64, 22	; 0x10000
+x0b18: ldr	r0, [r4, #204]	@ 0xcc
+x0b1c: ldrb	r0, [r0]
+x0b20: cmp	r0, r6
+x0b24: .word 0x8affffce @ bhi	0xa64
+x0b28: .word 0xe5c5812a @ strb	r8, [r5, #298]	; 0x12a
+x0b2c: .word 0xe5c59128 @ strb	r9, [r5, #296]	; 0x128
+x0b30: ldr	r0, [r4, #292]	@ 0x124
+x0b34: ldrh	r1, [r0]
+x0b38: cmp	r1, #5
+x0b3c: .word 0x05ca8006 @ strbeq	r8, [sl, #6]
+x0b40: beq x0b54
+x0b44: ldrb	r1, [sl, #6]
+x0b48: cmp	r1, #1
+x0b4c: moveq	r1, #5
+x0b50: .word 0x01c010b0 @ strheq	r1, [r0]
+x0b54: ldrb	r0, [r5, #298]	@ 0x12a
+x0b58: cmp	r0, #1
+x0b5c: .word 0x1a000031 @ bne	0xc28
+x0b60: ldr	r1, [r4, #312]	@ 0x138
+x0b64: ldrb	r0, [r5, #299]	@ 0x12b
+x0b68: ldrb	r1, [r1]
+x0b6c: cmp	r0, r1
+x0b70: bcs x0c28
+x0b74: ldrb	r0, [r5, #300]	@ 0x12c
+x0b78: cmp	r0, #0
+x0b7c: .word 0x1a000029 @ bne	0xc28
+x0b80: ldr	r0, [r4, #12]
+x0b84: .word 0xe12fff30 @ blx	r0
+x0b88: cmp	r0, #0
+x0b8c: ldrne	r1, [r4, #308]	@ 0x134
+x0b90: ldrne	r0, [r4, #232]	@ 0xe8
+x0b94: ldrbne	r1, [r1]
+x0b98: .word 0x10800081 @ addne	r0, r0, r1, lsl #1
+x0b9c: ldrhne	r0, [r0]
+x0ba0: cmpne	r0, #65024	@ 0xfe00
+x0ba4: .word 0x1a00001f @ bne	0xc28
+x0ba8: ldr	r1, [r4, #8]
+x0bac: .word 0xe28f0f84 @ add	r0, pc, #132, 30	; 0x210
+x0bb0: .word 0xe12fff31 @ blx	r1
+x0bb4: ldrb	r1, [r5, #299]	@ 0x12b
+x0bb8: ldr	r0, [r4, #308]	@ 0x134
+x0bbc: ldrb	r0, [r0, r1]
+x0bc0: ldr	r1, [r4, #240]	@ 0xf0
+x0bc4: .word 0xe0811080 @ add	r1, r1, r0, lsl #1
+x0bc8: ldrh	r3, [r1]
+x0bcc: .word 0xe58d3000 @ str	r3, [sp]
+x0bd0: ldr	r1, [r4, #236]	@ 0xec
+x0bd4: ldrb	r3, [r1, r0]
+x0bd8: ldr	r1, [r4, #232]	@ 0xe8
+x0bdc: .word 0xe0811080 @ add	r1, r1, r0, lsl #1
+x0be0: ldrh	r2, [r1]
+x0be4: ldr	r1, [r4, #228]	@ 0xe4
+x0be8: .word 0xe0810080 @ add	r0, r1, r0, lsl #1
+x0bec: ldrh	r1, [r0]
+x0bf0: mov	r0, r4
+x0bf4: .word 0xebfffdbe @ bl	0x2f4
+x0bf8: ldrb	r0, [r5, #299]	@ 0x12b
+x0bfc: .word 0xe2800001 @ add	r0, r0, #1
+x0c00: and	r0, r0, #255	@ 0xff
+x0c04: .word 0xe5c5012b @ strb	r0, [r5, #299]	; 0x12b
+x0c08: ldr	r1, [r4, #312]	@ 0x138
+x0c0c: ldrb	r1, [r1]
+x0c10: cmp	r0, r1
+x0c14: .word 0x25c5912b @ strbcs	r9, [r5, #299]	; 0x12b
+x0c18: .word 0x25c5912a @ strbcs	r9, [r5, #298]	; 0x12a
+x0c1c: .word 0x25c59128 @ strbcs	r9, [r5, #296]	; 0x128
+x0c20: ldrbcs	r0, [sl, #5]
+x0c24: .word 0x25ca0002 @ strbcs	r0, [sl, #2]
+x0c28: ldrb	r0, [r5, #300]	@ 0x12c
+x0c2c: cmp	r0, #1
+x0c30: .word 0x1a00001e @ bne	0xcb0
+x0c34: ldr	r1, [r4, #244]	@ 0xf4
+x0c38: ldrb	r0, [r5, #301]	@ 0x12d
+x0c3c: ldrh	r1, [r1]
+x0c40: cmp	r0, r1
+x0c44: bcs x0d2c
+x0c48: ldr	r0, [r4, #12]
+x0c4c: .word 0xe12fff30 @ blx	r0
+x0c50: cmp	r0, #0
+x0c54: .word 0x1a000034 @ bne	0xd2c
+x0c58: ldr	r1, [r4, #8]
+x0c5c: .word 0xe28f0f5c @ add	r0, pc, #92, 30	; 0x170
+x0c60: .word 0xe12fff31 @ blx	r1
+x0c64: ldrb	r0, [r5, #301]	@ 0x12d
+x0c68: ldr	r1, [r4, #304]	@ 0x130
+x0c6c: ldr	r2, [r1, r0, lsl #2]
+x0c70: ldr	r1, [r4, #300]	@ 0x12c
+x0c74: ldr	r1, [r1, r0, lsl #2]
+x0c78: ldr	r0, [r4, #176]	@ 0xb0
+x0c7c: ldr	r0, [r0]
+x0c80: ldr	r3, [r4, #44]	@ 0x2c
+x0c84: .word 0xe12fff33 @ blx	r3
+x0c88: ldrb	r0, [r5, #301]	@ 0x12d
+x0c8c: .word 0xe2800001 @ add	r0, r0, #1
+x0c90: and	r0, r0, #255	@ 0xff
+x0c94: .word 0xe5c5012d @ strb	r0, [r5, #301]	; 0x12d
+x0c98: ldr	r1, [r4, #244]	@ 0xf4
+x0c9c: ldrh	r1, [r1]
+x0ca0: cmp	r0, r1
+x0ca4: .word 0x25c5912d @ strbcs	r9, [r5, #301]	; 0x12d
+x0ca8: .word 0x25c5912c @ strbcs	r9, [r5, #300]	; 0x12c
+x0cac: b x0d2c
+x0cb0: cmp	r0, #2
+x0cb4: .word 0x1a00001c @ bne	0xd2c
+x0cb8: ldrb	r0, [r5, #301]	@ 0x12d
+x0cbc: ldrb	r1, [r5, #302]	@ 0x12e
+x0cc0: cmp	r0, r1
+x0cc4: .word 0x8a000018 @ bhi	0xd2c
+x0cc8: ldr	r0, [r4, #12]
+x0ccc: .word 0xe12fff30 @ blx	r0
+x0cd0: cmp	r0, #0
+x0cd4: .word 0x1a000014 @ bne	0xd2c
+x0cd8: ldr	r1, [r4, #8]
+x0cdc: .word 0xe28f0f40 @ add	r0, pc, #64, 30	; 0x100
+x0ce0: .word 0xe12fff31 @ blx	r1
+x0ce4: ldrb	r0, [r5, #301]	@ 0x12d
+x0ce8: ldr	r1, [r4, #304]	@ 0x130
+x0cec: ldr	r2, [r1, r0, lsl #2]
+x0cf0: ldr	r1, [r4, #300]	@ 0x12c
+x0cf4: ldr	r1, [r1, r0, lsl #2]
+x0cf8: ldr	r0, [r4, #176]	@ 0xb0
+x0cfc: ldr	r0, [r0]
+x0d00: ldr	r3, [r4, #44]	@ 0x2c
+x0d04: .word 0xe12fff33 @ blx	r3
+x0d08: ldrb	r0, [r5, #301]	@ 0x12d
+x0d0c: .word 0xe2800001 @ add	r0, r0, #1
+x0d10: and	r0, r0, #255	@ 0xff
+x0d14: .word 0xe5c5012d @ strb	r0, [r5, #301]	; 0x12d
+x0d18: ldrb	r1, [r5, #302]	@ 0x12e
+x0d1c: cmp	r0, r1
+x0d20: .word 0x25c5912d @ strbcs	r9, [r5, #301]	; 0x12d
+x0d24: .word 0x25c5912c @ strbcs	r9, [r5, #300]	; 0x12c
+x0d28: .word 0x25c5912e @ strbcs	r9, [r5, #302]	; 0x12e
+x0d2c: ldrb	r0, [r5, #303]	@ 0x12f
+x0d30: cmp	r0, #1
+x0d34: ldreq	r0, [r4, #48]	@ 0x30
+x0d38: .word 0x012fff30 @ blxeq	r0
+x0d3c: ldrb	r0, [sl]
+x0d40: cmp	r0, #0
+x0d44: beq x0da0
+x0d48: ldr	r0, [r4, #12]
+x0d4c: .word 0xe12fff30 @ blx	r0
+x0d50: cmp	r0, #0
+x0d54: .word 0x1a000011 @ bne	0xda0
+x0d58: ldr	r1, [r4, #8]
+x0d5c: .word 0xe28f0090 @ add	r0, pc, #144	; 0x90
+x0d60: .word 0xe12fff31 @ blx	r1
+x0d64: ldrb	r0, [sl, #1]
+x0d68: ldr	r1, [r4, #88]	@ 0x58
+x0d6c: ldr	r2, [r1, r0, lsl #2]
+x0d70: ldr	r1, [r4, #84]	@ 0x54
+x0d74: ldr	r1, [r1, r0, lsl #2]
+x0d78: ldr	r0, [r4, #176]	@ 0xb0
+x0d7c: ldr	r0, [r0]
+x0d80: ldr	r3, [r4, #44]	@ 0x2c
+x0d84: .word 0xe12fff33 @ blx	r3
+x0d88: ldrb	r0, [sl]
+x0d8c: .word 0xe2400001 @ sub	r0, r0, #1
+x0d90: .word 0xe5ca0000 @ strb	r0, [sl]
+x0d94: ldrb	r0, [sl, #1]
+x0d98: .word 0xe2800001 @ add	r0, r0, #1
+x0d9c: .word 0xe5ca0001 @ strb	r0, [sl, #1]
+x0da0: ldrb	r0, [sl, #2]
+x0da4: mov	r6, sl
+x0da8: cmp	r0, #0
+x0dac: beq x0e5c
+x0db0: b x0e04
+x0db4: .ascii "Data"
+x0db8: .ascii " = %"
+x0dbc: .ascii "d.\r\n"
+x0dc0: .ascii "\0\0\0\0"
+x0dc4: .ascii "===="
+x0dc8: .ascii "===="
+x0dcc: .ascii "=low"
+x0dd0: .ascii "\r\n\0\0"
+x0dd4: .ascii "===="
+x0dd8: .ascii "===="
+x0ddc: .ascii "=v1\r"
+x0de0: .ascii "\n\0\0\0"
+x0de4: .ascii "===="
+x0de8: .ascii "===="
+x0dec: .ascii "=v2\r"
+x0df0: .ascii "\n\0\0\0"
+x0df4: .ascii "===="
+x0df8: .ascii "===="
+x0dfc: .ascii "=v3\r"
+x0e00: .ascii "\n\0\0\0"
+x0e04: ldr	r0, [r4, #12]
+x0e08: .word 0xe12fff30 @ blx	r0
+x0e0c: cmp	r0, #0
+x0e10: .word 0x1a000011 @ bne	0xe5c
+x0e14: ldr	r1, [r4, #8]
+x0e18: .word 0xe28f0070 @ add	r0, pc, #112	; 0x70
+x0e1c: .word 0xe12fff31 @ blx	r1
+x0e20: ldrb	r0, [r6, #3]
+x0e24: ldr r1, x02c8
+x0e28: ldr	r2, [r1, r0, lsl #2]
+x0e2c: ldr r1, x02cc
+x0e30: ldr	r1, [r1, r0, lsl #2]
+x0e34: ldr	r0, [r4, #176]	@ 0xb0
+x0e38: ldr	r0, [r0]
+x0e3c: ldr	r3, [r4, #44]	@ 0x2c
+x0e40: .word 0xe12fff33 @ blx	r3
+x0e44: ldrb	r0, [r6, #2]
+x0e48: .word 0xe2400001 @ sub	r0, r0, #1
+x0e4c: .word 0xe5c60002 @ strb	r0, [r6, #2]
+x0e50: ldrb	r0, [r6, #3]
+x0e54: .word 0xe2800001 @ add	r0, r0, #1
+x0e58: .word 0xe5c60003 @ strb	r0, [r6, #3]
+x0e5c: ldrb	r0, [r6, #2]
+x0e60: ldrb	r1, [r6]
+x0e64: .word 0xe1900001 @ orrs	r0, r0, r1
+x0e68: ldrbeq	r0, [r5, #300]	@ 0x12c
+x0e6c: cmpeq	r0, #0
+x0e70: ldrbeq	r0, [r5, #298]	@ 0x12a
+x0e74: cmpeq	r0, #0
+x0e78: ldrbeq	r0, [r5, #296]	@ 0x128
+x0e7c: cmpeq	r0, #0
+x0e80: ldrbeq	r0, [r5, #88]	@ 0x58
+x0e84: cmpeq	r0, #0
+x0e88: .word 0x05c58dee @ strbeq	r8, [r5, #3566]	; 0xdee
+x0e8c: b x04f0
+x0e90: .ascii "===="
+x0e94: .ascii "===="
+x0e98: .ascii "=v4\r"
+x0e9c: .ascii "\n\0\0\0"
+x0ea0: bx	lr
+x0ea4: andeq	r4, r0, r8, ror r7
+x0ea8: mov	r2, #0
+x0eac: .word 0xe070c1a1 @ rsbs	ip, r0, r1, lsr #3
+x0eb0: .ascii " \0\0:"
+x0eb4: .word 0xe070c421 @ rsbs	ip, r0, r1, lsr #8
+x0eb8: bcc x0efc
+x0ebc: .word 0xe1a00400 @ lsl	r0, r0, #8
+x0ec0: .word 0xe38224ff @ orr	r2, r2, #-16777216	; 0xff000000
+x0ec4: .word 0xe070c221 @ rsbs	ip, r0, r1, lsr #4
+x0ec8: bcc x0f2c
+x0ecc: .word 0xe070c421 @ rsbs	ip, r0, r1, lsr #8
+x0ed0: bcc x0efc
+x0ed4: .word 0xe1a00400 @ lsl	r0, r0, #8
+x0ed8: .word 0xe38228ff @ orr	r2, r2, #16711680	; 0xff0000
+x0edc: .word 0xe070c421 @ rsbs	ip, r0, r1, lsr #8
+x0ee0: .word 0x21a00400 @ lslcs	r0, r0, #8
+x0ee4: .word 0x23822cff @ orrcs	r2, r2, #65280	; 0xff00
+x0ee8: .word 0xe070c221 @ rsbs	ip, r0, r1, lsr #4
+x0eec: bcc x0f2c
+x0ef0: .word 0xe270c000 @ rsbs	ip, r0, #0
+x0ef4: bcs x0f6c
+x0ef8: .word 0x21a00420 @ lsrcs	r0, r0, #8
+x0efc: .word 0xe070c3a1 @ rsbs	ip, r0, r1, lsr #7
+x0f00: .word 0x20411380 @ subcs	r1, r1, r0, lsl #7
+x0f04: .word 0xe0a22002 @ adc	r2, r2, r2
+x0f08: .word 0xe070c321 @ rsbs	ip, r0, r1, lsr #6
+x0f0c: .word 0x20411300 @ subcs	r1, r1, r0, lsl #6
+x0f10: .word 0xe0a22002 @ adc	r2, r2, r2
+x0f14: .word 0xe070c2a1 @ rsbs	ip, r0, r1, lsr #5
+x0f18: .word 0x20411280 @ subcs	r1, r1, r0, lsl #5
+x0f1c: .word 0xe0a22002 @ adc	r2, r2, r2
+x0f20: .word 0xe070c221 @ rsbs	ip, r0, r1, lsr #4
+x0f24: .word 0x20411200 @ subcs	r1, r1, r0, lsl #4
+x0f28: .word 0xe0a22002 @ adc	r2, r2, r2
+x0f2c: .word 0xe070c1a1 @ rsbs	ip, r0, r1, lsr #3
+x0f30: .word 0x20411180 @ subcs	r1, r1, r0, lsl #3
+x0f34: .word 0xe0a22002 @ adc	r2, r2, r2
+x0f38: .word 0xe070c121 @ rsbs	ip, r0, r1, lsr #2
+x0f3c: .word 0x20411100 @ subcs	r1, r1, r0, lsl #2
+x0f40: .word 0xe0a22002 @ adc	r2, r2, r2
+x0f44: .word 0xe070c0a1 @ rsbs	ip, r0, r1, lsr #1
+x0f48: .word 0x20411080 @ subcs	r1, r1, r0, lsl #1
+x0f4c: .word 0xe0a22002 @ adc	r2, r2, r2
+x0f50: .word 0xe070c001 @ rsbs	ip, r0, r1
+x0f54: .word 0x20411000 @ subcs	r1, r1, r0
+x0f58: .word 0xe0b22002 @ adcs	r2, r2, r2
+x0f5c: bcs x0ef8
+x0f60: mov	r0, r2
+x0f64: bx	lr
+x0f68: andeq	r4, r0, r8, ror r7
+x0f6c: mov	r0, #2
+x0f70: mov	r1, #2
+x0f74: b x0f7c
+x0f78: andeq	r4, r0, r8, ror r7
+x0f7c: push	{r4, lr}
+x0f80: blx x0f98
+x0f84: cmp	r0, #0
+x0f88: popeq	{r4, lr}
+x0f8c: bxeq	lr
+x0f90: pop	{r4, lr}
+x0f94: b x0fe0
+x0f98: .word 0x4e0eb570
+x0f9c: .word 0x1c011c0d
+x0fa0: .word 0x447e1c04
+x0fa4: .word 0xf0001c30
+x0fa8: .word 0x1c02f800
+x0fac: .word 0xd10642b0
+x0fb0: .word 0x1c201c29
+x0fb4: .word 0xf828f000
+x0fb8: .word 0xbc08bc70
+x0fbc: .word 0x48064718
+x0fc0: .word 0x42824478
+x0fc4: .word 0x1c29d003
+x0fc8: .word 0xf0001c20
+x0fcc: .word 0x2000f817
+x0fd0: .word 0x0000e7f2
+x0fd4: .word 0xf7ecd059
+x0fd8: .word 0xf7ecd039
+x0fdc: .word 0x00004778
+x0fe0: mov	r0, #24
+x0fe4: ldr r1, x0ff4
+x0fe8: svc	0x00123456
+x0fec: bx	lr
+x0ff0: .word 0x00000131
+x0ff4: .word 0x00020026
+x0ff8: .word 0x47084700
+x0ffc: .word 0x47184710
+x1000: .ascii " G(G"
+x1004: .ascii "0G8G"
+x1008: .word 0x1e42b538
+x100c: .word 0xa4242a0d
+x1010: .word 0x2217d226
+x1014: .word 0x43424b23
+x1018: .word 0x18d5447b
+x101c: .word 0x28023d17
+x1020: .word 0x0148d114
+x1024: .word 0xa420d501
+x1028: .word 0x4824e01b
+x102c: .word 0xd0014008
+x1030: .word 0xe016a423
+x1034: .word 0xd50100c8
+x1038: .word 0xe012a425
+x103c: .word 0xd5010088
+x1040: .word 0xe00ea426
+x1044: .word 0xd50c0048
+x1048: .word 0xe00aa427
+x104c: .word 0xd1012808
+x1050: .word 0xe0061c0c
+x1054: .word 0xd1042809
+x1058: .word 0xd1022901
+x105c: .word 0xe000a526
+x1060: .word 0x200aa52b
+x1064: .word 0xf860f000
+x1068: .ascii "(x\0("
+x106c: .word 0x7828d006
+x1070: .word 0xf0003501
+x1074: .word 0x7828f859
+x1078: .word 0xd1f82800
+x107c: .ascii " x\0("
+x1080: .word 0x7820d006
+x1084: .word 0xf0003401
+x1088: .word 0x7820f84f
+x108c: .word 0xd1f82800
+x1090: .word 0xf000200a
+x1094: .word 0xbc38f849
+x1098: .word 0x2001bc08
+x109c: .word 0x00004718
+x10a0: .ascii "\0\0\0\0"
+x10a4: .word 0x00000c4c
+x10a8: .ascii "Inva"
+x10ac: .ascii "lid "
+x10b0: .ascii "Oper"
+x10b4: .ascii "atio"
+x10b8: .ascii "n\0\0\0"
+x10bc: .word 0x08000002
+x10c0: .ascii "Divi"
+x10c4: .ascii "de B"
+x10c8: .ascii "y Ze"
+x10cc: .ascii "ro\0\0"
+x10d0: .ascii "Over"
+x10d4: .ascii "flow"
+x10d8: .ascii "\0\0\0\0"
+x10dc: .ascii "Unde"
+x10e0: .ascii "rflo"
+x10e4: .ascii "w\0\0\0"
+x10e8: .ascii "Inex"
+x10ec: .ascii "act "
+x10f0: .ascii "Resu"
+x10f4: .ascii "lt\0\0"
+x10f8: .ascii ": He"
+x10fc: .ascii "ap m"
+x1100: .ascii "emor"
+x1104: .ascii "y co"
+x1108: .ascii "rrup"
+x110c: .ascii "ted\0"
+x1110: .ascii "Unkn"
+x1114: .ascii "own "
+x1118: .ascii "sign"
+x111c: .ascii "al\0\0"
+x1120: .word 0x00004778
+x1124: .word 0xe12fff1e
+x1128: .word 0xab00b508
+x112c: .word 0x20037018
+x1130: .word 0xdfab4669
+x1134: .word 0xbc08b001
+x1138: .word 0x00004718
+x113c: .word 0x00ea0058
+x1140: .word 0x02060187
+x1144: .word 0x02c0026c
+x1148: .word 0x03d50318
+x114c: .word 0x00000532
+x1150: .ascii "\0\0\0\0"
+x1154: .ascii "\0\0\0\0"
+x1158: .ascii "\0\0\0\0"
+x115c: .ascii "\0\0\0\0"
+x1160: .ascii "\0\0\0\0"
+x1164: .ascii "\0\0\0\0"
+x1168: .ascii "\0\0\0\0"
+x116c: .ascii "\0\0\0\0"
+x1170: .ascii "\0\0\0\0"
+x1174: .ascii "\0\0\0\0"
+x1178: .ascii "\0\0\0\0"
+x117c: .ascii "\0\0\0\0"
+x1180: .ascii "\0\0\0\0"
+x1184: .ascii "\0\0\0\0"
+x1188: .ascii "\0\0\0\0"
+x118c: .ascii "\0\0\0\0"
+x1190: .ascii "\0\0\0\0"
+x1194: .ascii "\0\0\0\0"
+x1198: .ascii "\0\0\0\0"
+x119c: .ascii "\0\0\0\0"
+x11a0: .ascii "\0\0\0\0"
+x11a4: .ascii "\0\0\0\0"
+x11a8: .ascii "\0\0\0\0"
+x11ac: .ascii "\0\0\0\0"
+x11b0: .ascii "\0\0\0\0"
+x11b4: .ascii "\0\0\0\0"
+x11b8: .ascii "\0\0\0\0"
+x11bc: .ascii "\0\0\0\0"
+x11c0: .ascii "\0\0\0\0"
+x11c4: .ascii "\0\0\0\0"
+x11c8: .ascii "\0\0\0\0"
+x11cc: .ascii "\0\0\0\0"
+x11d0: .ascii "\0\0\0\0"
+x11d4: .ascii "\0\0\0\0"
+x11d8: .ascii "\0\0\0\0"
+x11dc: .ascii "\0\0\0\0"
+x11e0: .ascii "\0\0\0\0"
+x11e4: .ascii "\0\0\0\0"
+x11e8: .ascii "\0\0\0\0"
+x11ec: .ascii "\0\0\0\0"
+x11f0: .ascii "\0\0\0\0"
+x11f4: .ascii "\0\0\0\0"
+x11f8: .ascii "\0\0\0\0"
+x11fc: .ascii "\0\0\0\0"
+x1200: .ascii "\0\0\0\0"
+x1204: .word 0x2f772f76
+x1208: .word 0x2f792f78
+x120c: .word 0x2f7b2f7a
+x1210: .word 0x2f7d2f7c
+x1214: .word 0x2f7f2f7e
+x1218: .word 0x2f812f80
+x121c: .word 0x2f832f82
+x1220: .word 0x2f852f84
+x1224: .word 0x2f872f86
+x1228: .word 0x2f892f88
+x122c: .word 0x2f8b2f8a
+x1230: .word 0x2f8d2f8c
+x1234: .word 0x2f8f2f8e
+x1238: .word 0x2f912f90
+x123c: .word 0x2f932f92
+x1240: .word 0x2f952f94
+x1244: .word 0x2f972f96
+x1248: .word 0x2f992f98
+x124c: .word 0x2f9b2f9a
+x1250: .word 0x2f9d2f9c
+x1254: .word 0x2f9f2f9e
+x1258: .word 0x2fa12fa0
+x125c: .word 0x2fa32fa2
+x1260: .word 0x2fa52fa4
+x1264: .word 0x2fa72fa6
+x1268: .word 0x2fa92fa8
+x126c: .word 0x2fab2faa
+x1270: .word 0x2fad2fac
+x1274: .word 0x2faf2fae
+x1278: .word 0x2fb12fb0
+x127c: .word 0x2fb32fb2
+x1280: .word 0x2fb52fb4
+x1284: .word 0x2fb72fb6
+x1288: .word 0x2fb92fb8
+x128c: .word 0x2fbb2fba
+x1290: .word 0x2fbd2fbc
+x1294: .word 0x2fbf2fbe
+x1298: .word 0x2fc12fc0
+x129c: .word 0x2fc32fc2
+x12a0: .word 0x2fc52fc4
+x12a4: .word 0x2fc72fc6
+x12a8: .word 0x2fc92fc8
+x12ac: .word 0x2fcb2fca
+x12b0: .word 0x2fcd2fcc
+x12b4: .word 0x2fdb2fda
+x12b8: .word 0x2fdd2fdc
+x12bc: .word 0x2fdf2fde
+x12c0: .word 0x2fe12fe0
+x12c4: .word 0x2fe32fe2
+x12c8: .word 0x2fe52fe4
+x12cc: .word 0x2fe72fe6
+x12d0: .word 0x2fe92fe8
+x12d4: .word 0x2feb2fea
+x12d8: .word 0x2fed2fec
+x12dc: .word 0x2fef2fee
+x12e0: .word 0x2ff12ff0
+x12e4: .word 0x2ff32ff2
+x12e8: .word 0x2ff52ff4
+x12ec: .word 0x2ff72ff6
+x12f0: .word 0x2ff92ff8
+x12f4: .word 0x2ffb2ffa
+x12f8: .word 0x2ffd2ffc
+x12fc: .word 0x2fff2ffe
+x1300: .word 0x30013000
+x1304: .word 0x30033002
+x1308: .word 0x30053004
+x130c: .word 0x30073006
+x1310: .word 0x30093008
+x1314: .word 0x300b300a
+x1318: .word 0x300d300c
+x131c: .word 0x300f300e
+x1320: .word 0x30113010
+x1324: .word 0x30133012
+x1328: .word 0x30153014
+x132c: .word 0x30173016
+x1330: .word 0x30193018
+x1334: .word 0x301b301a
+x1338: .word 0x301d301c
+x133c: .word 0x301f301e
+x1340: .word 0x30213020
+x1344: .word 0x30233022
+x1348: .word 0x30253024
+x134c: .word 0x30273026
+x1350: .ascii "(0)0"
+x1354: .word 0x302b302a
+x1358: .word 0x302d302c
+x135c: .word 0x302f302e
+x1360: .ascii "0010"
+x1364: .ascii "2030"
+x1368: .ascii "4050"
+x136c: .ascii "6070"
+x1370: .ascii "8090"
+x1374: .word 0x303b303a
+x1378: .word 0x303d303c
+x137c: .word 0x303f303e
+x1380: .word 0x30413040
+x1384: .ascii "B0C0"
+x1388: .ascii "D0E0"
+x138c: .ascii "F0G0"
+x1390: .ascii "H0I0"
+x1394: .ascii "J0K0"
+x1398: .ascii "L0M0"
+x139c: .ascii "N0O0"
+x13a0: .ascii "P0Q0"
+x13a4: .ascii "R0S0"
+x13a8: .ascii "T0U0"
+x13ac: .ascii "V0W0"
+x13b0: .ascii "X0Y0"
+x13b4: .word 0x305b305a
+x13b8: .word 0x305d305c
+x13bc: .word 0x305f305e
+x13c0: .word 0x30613060
+x13c4: .ascii "b0c0"
+x13c8: .ascii "d0e0"
+x13cc: .ascii "f0g0"
+x13d0: .ascii "h0i0"
+x13d4: .ascii "j0k0"
+x13d8: .word 0x30813080
+x13dc: .word 0x30833082
+x13e0: .word 0x30853084
+x13e4: .word 0x30873086
+x13e8: .word 0x30893088
+x13ec: .word 0x308b308a
+x13f0: .word 0x308d308c
+x13f4: .word 0x308f308e
+x13f8: .word 0x30913090
+x13fc: .word 0x30933092
+x1400: .word 0x30953094
+x1404: .word 0x30973096
+x1408: .word 0x30993098
+x140c: .word 0x309b309a
+x1410: .word 0x309d309c
+x1414: .word 0x309f309e
+x1418: .word 0x30a130a0
+x141c: .word 0x30a330a2
+x1420: .word 0x30a530a4
+x1424: .word 0x30a730a6
+x1428: .word 0x30a930a8
+x142c: .word 0x30ab30aa
+x1430: .word 0x30ad30ac
+x1434: .word 0x30af30ae
+x1438: .word 0x30b130b0
+x143c: .word 0x30b330b2
+x1440: .word 0x30b530b4
+x1444: .word 0x30b730b6
+x1448: .word 0x30b930b8
+x144c: .word 0x30bb30ba
+x1450: .word 0x30bd30bc
+x1454: .word 0x30bf30be
+x1458: .word 0x30c130c0
+x145c: .word 0x30c330c2
+x1460: .word 0x30c530c4
+x1464: .word 0x30c730c6
+x1468: .word 0x30c930c8
+x146c: .word 0x30cb30ca
+x1470: .word 0x30cd30cc
+x1474: .word 0x30cf30ce
+x1478: .word 0x30d230d0
+x147c: .word 0x30d430d3
+x1480: .word 0x30d630d5
+x1484: .word 0x30d830d7
+x1488: .word 0x30da30d9
+x148c: .word 0x30dc30db
+x1490: .word 0x30de30dd
+x1494: .word 0x30e030df
+x1498: .word 0x30e330e2
+x149c: .word 0x30e530e4
+x14a0: .word 0x30e730e6
+x14a4: .word 0x30e930e8
+x14a8: .word 0x30eb30ea
+x14ac: .word 0x30ed30ec
+x14b0: .word 0x30ef30ee
+x14b4: .word 0x30f130f0
+x14b8: .word 0x30f330f2
+x14bc: .word 0x30f530f4
+x14c0: .word 0x30f730f6
+x14c4: .word 0x30f930f8
+x14c8: .word 0x30fb30fa
+x14cc: .word 0x30fd30fc
+x14d0: .word 0x30ff30fe
+x14d4: .word 0x31013100
+x14d8: .word 0x31033102
+x14dc: .word 0x31053104
+x14e0: .word 0x31073106
+x14e4: .word 0x31093108
+x14e8: .word 0x310b310a
+x14ec: .word 0x310d310c
+x14f0: .word 0x310f310e
+x14f4: .word 0x31113110
+x14f8: .word 0x31133112
+x14fc: .word 0x31153114
+x1500: .word 0x31173116
+x1504: .word 0x311a3119
+x1508: .word 0x311c311b
+x150c: .word 0x311e311d
+x1510: .word 0x312f3120
+x1514: .ascii "0111"
+x1518: .ascii "2161"
+x151c: .ascii "7181"
+x1520: .ascii "91:1"
+x1524: .word 0x313c313b
+x1528: .ascii "=1>1"
+x152c: .word 0x3140313f
+x1530: .ascii "A1B1"
+x1534: .ascii "C1D1"
+x1538: .ascii "E1F1"
+x153c: .ascii "G1H1"
+x1540: .ascii "I1J1"
+x1544: .ascii "K1L1"
+x1548: .ascii "M1N1"
+x154c: .ascii "O1P1"
+x1550: .ascii "Q1R1"
+x1554: .ascii "S1T1"
+x1558: .ascii "U1V1"
+x155c: .ascii "W1X1"
+x1560: .ascii "Y1Z1"
+x1564: .word 0x315c315b
+x1568: .word 0x315e315d
+x156c: .word 0x3160315f
+x1570: .ascii "a1b1"
+x1574: .ascii "c1d1"
+x1578: .ascii "e1f1"
+x157c: .ascii "g1h1"
+x1580: .ascii "i1j1"
+x1584: .ascii "k1l1"
+x1588: .ascii "m1n1"
+x158c: .ascii "o1p1"
+x1590: .ascii "r1s1"
+x1594: .ascii "t1u1"
+x1598: .ascii "v1w1"
+x159c: .ascii "x1y1"
+x15a0: .word 0x317b317a
+x15a4: .word 0x317d317c
+x15a8: .word 0x317f317e
+x15ac: .word 0x31813180
+x15b0: .word 0x31833182
+x15b4: .word 0x31853184
+x15b8: .word 0x31873186
+x15bc: .word 0x31893188
+x15c0: .word 0x318b318a
+x15c4: .word 0x318d318c
+x15c8: .word 0x318f318e
+x15cc: .word 0x31913190
+x15d0: .word 0x31933192
+x15d4: .word 0x31953194
+x15d8: .word 0x31973196
+x15dc: .word 0x31993198
+x15e0: .word 0x319b319a
+x15e4: .word 0x319d319c
+x15e8: .word 0x319f319e
+x15ec: .word 0x31a131a0
+x15f0: .word 0x31a331a2
+x15f4: .word 0x31a531a4
+x15f8: .word 0x31a731a6
+x15fc: .word 0x31a931a8
+x1600: .word 0x31ab31aa
+x1604: .word 0x31ad31ac
+x1608: .word 0x31af31ae
+x160c: .word 0x31b131b0
+x1610: .word 0x31c331c2
+x1614: .word 0x31c531c4
+x1618: .word 0x31c731c6
+x161c: .word 0x31c931c8
+x1620: .word 0x31cb31ca
+x1624: .word 0x31cd31cc
+x1628: .word 0x31cf31ce
+x162c: .word 0x31d131d0
+x1630: .word 0x31d331d2
+x1634: .word 0x31d531d4
+x1638: .word 0x31d731d6
+x163c: .word 0x31d931d8
+x1640: .word 0x31db31da
+x1644: .word 0x31dd31dc
+x1648: .word 0x31df31de
+x164c: .word 0x31e131e0
+x1650: .word 0x31e331e2
+x1654: .word 0x31e531e4
+x1658: .word 0x31e731e6
+x165c: .word 0x31e931e8
+x1660: .word 0x31eb31ea
+x1664: .word 0x31ed31ec
+x1668: .word 0x31ef31ee
+x166c: .word 0x31f131f0
+x1670: .word 0x31f331f2
+x1674: .word 0x31f531f4
+x1678: .word 0x31f731f6
+x167c: .word 0x31f931f8
+x1680: .word 0x31fb31fa
+x1684: .word 0x31fd31fc
+x1688: .word 0x31ff31fe
+x168c: .word 0x32013200
+x1690: .word 0x32033202
+x1694: .word 0x32053204
+x1698: .word 0x32073206
+x169c: .word 0x32093208
+x16a0: .word 0x320b320a
+x16a4: .word 0x320d320c
+x16a8: .word 0x320f320e
+x16ac: .word 0x32113210
+x16b0: .word 0x32133212
+x16b4: .word 0x32153214
+x16b8: .word 0x32173216
+x16bc: .word 0x32193218
+x16c0: .word 0x321b321a
+x16c4: .word 0x321d321c
+x16c8: .word 0x321f321e
+x16cc: .word 0x32213220
+x16d0: .word 0x32233222
+x16d4: .word 0x32253224
+x16d8: .word 0x32273226
+x16dc: .ascii "7282"
+x16e0: .ascii "92:2"
+x16e4: .word 0x323c323b
+x16e8: .word 0x323f323e
+x16ec: .word 0x32413240
+x16f0: .ascii "B2C2"
+x16f4: .ascii "D2E2"
+x16f8: .ascii "F2G2"
+x16fc: .ascii "H2I2"
+x1700: .ascii "J2K2"
+x1704: .ascii "L2M2"
+x1708: .ascii "N2O2"
+x170c: .ascii "P2R2"
+x1710: .ascii "S2U2"
+x1714: .ascii "V2W2"
+x1718: .ascii "X2Y2"
+x171c: .word 0x325b325a
+x1720: .word 0x325d325c
+x1724: .word 0x325f325e
+x1728: .word 0x32613260
+x172c: .ascii "b2c2"
+x1730: .ascii "d2e2"
+x1734: .ascii "f2g2"
+x1738: .ascii "h2i2"
+x173c: .ascii "j2k2"
+x1740: .ascii "l2m2"
+x1744: .ascii "n2o2"
+x1748: .ascii "p2q2"
+x174c: .ascii "r2s2"
+x1750: .ascii "t2u2"
+x1754: .ascii "v2w2"
+x1758: .ascii "x2y2"
+x175c: .word 0x327b327a
+x1760: .word 0x327d327c
+x1764: .word 0x327f327e
+x1768: .word 0x32813280
+x176c: .word 0x32833282
+x1770: .word 0x32853284
+x1774: .word 0x32873286
+x1778: .word 0x32893288
+x177c: .word 0x328b328a
+x1780: .word 0x328d328c
+x1784: .word 0x329a3299
+x1788: .word 0x329c329b
+x178c: .word 0x329e329d
+x1790: .word 0x32a0329f
+x1794: .word 0x32a232a1
+x1798: .word 0x32a432a3
+x179c: .word 0x32a632a5
+x17a0: .word 0x32a832a7
+x17a4: .word 0x32aa32a9
+x17a8: .word 0x32ac32ab
+x17ac: .word 0x32ae32ad
+x17b0: .word 0x32b032af
+x17b4: .word 0x32b232b1
+x17b8: .word 0x32b432b3
+x17bc: .word 0x32b632b5
+x17c0: .word 0x32b832b7
+x17c4: .word 0x32ba32b9
+x17c8: .word 0x32bc32bb
+x17cc: .word 0x32be32bd
+x17d0: .word 0x32c032bf
+x17d4: .word 0x32c232c1
+x17d8: .word 0x32c432c3
+x17dc: .word 0x32c632c5
+x17e0: .word 0x32c832c7
+x17e4: .word 0x32ca32c9
+x17e8: .word 0x32cc32cb
+x17ec: .word 0x32ce32cd
+x17f0: .word 0x32d032cf
+x17f4: .word 0x32d232d1
+x17f8: .word 0x32d432d3
+x17fc: .word 0x32d632d5
+x1800: .word 0x32d832d7
+x1804: .word 0x32da32d9
+x1808: .word 0x32dc32db
+x180c: .word 0x32de32dd
+x1810: .word 0x32e032df
+x1814: .word 0x32e232e1
+x1818: .word 0x32e432e3
+x181c: .word 0x32e632e5
+x1820: .word 0x32e832e7
+x1824: .word 0x32ea32e9
+x1828: .word 0x32ec32eb
+x182c: .word 0x32ee32ed
+x1830: .word 0x32f032ef
+x1834: .word 0x32fa32f9
+x1838: .word 0x32fc32fb
+x183c: .word 0x32fe32fd
+x1840: .word 0x330032ff
+x1844: .word 0x33023301
+x1848: .word 0x33043303
+x184c: .word 0x33063305
+x1850: .word 0x33083307
+x1854: .word 0x330a3309
+x1858: .word 0x330c330b
+x185c: .word 0x330e330d
+x1860: .word 0x3310330f
+x1864: .word 0x33123311
+x1868: .word 0x33143313
+x186c: .word 0x33163315
+x1870: .word 0x33183317
+x1874: .word 0x331a3319
+x1878: .word 0x331c331b
+x187c: .word 0x331e331d
+x1880: .word 0x3320331f
+x1884: .word 0x33223321
+x1888: .word 0x33243323
+x188c: .word 0x33263325
+x1890: .word 0x33283327
+x1894: .word 0x332a3329
+x1898: .word 0x332c332b
+x189c: .ascii "-3.3"
+x18a0: .word 0x3330332f
+x18a4: .ascii "1323"
+x18a8: .ascii "3343"
+x18ac: .ascii "5363"
+x18b0: .ascii "7383"
+x18b4: .ascii "93:3"
+x18b8: .word 0x333c333b
+x18bc: .ascii "=3>3"
+x18c0: .word 0x3340333f
+x18c4: .ascii "A3B3"
+x18c8: .ascii "C3D3"
+x18cc: .ascii "E3F3"
+x18d0: .ascii "G3H3"
+x18d4: .ascii "I3J3"
+x18d8: .ascii "K3L3"
+x18dc: .ascii "M3N3"
+x18e0: .ascii "O3P3"
+x18e4: .ascii "Q3R3"
+x18e8: .ascii "S3T3"
+x18ec: .ascii "U3V3"
+x18f0: .ascii "W3X3"
+x18f4: .ascii "Y3Z3"
+x18f8: .word 0x335c335b
+x18fc: .word 0x335e335d
+x1900: .word 0x3360335f
+x1904: .ascii "a3b3"
+x1908: .ascii "c3d3"
+x190c: .ascii "e3f3"
+x1910: .ascii "g3h3"
+x1914: .ascii "i3j3"
+x1918: .ascii "k3l3"
+x191c: .ascii "m3n3"
+x1920: .ascii "o3p3"
+x1924: .ascii "q3r3"
+x1928: .ascii "s3t3"
+x192c: .ascii "u3v3"
+x1930: .ascii "w3x3"
+x1934: .ascii "y3z3"
+x1938: .word 0x337c337b
+x193c: .word 0x337e337d
+x1940: .word 0x3380337f
+x1944: .word 0x33823381
+x1948: .word 0x33843383
+x194c: .word 0x33863385
+x1950: .word 0x33883387
+x1954: .word 0x338a3389
+x1958: .word 0x338c338b
+x195c: .word 0x338e338d
+x1960: .word 0x3390338f
+x1964: .word 0x33923391
+x1968: .word 0x33943393
+x196c: .word 0x33963395
+x1970: .word 0x33983397
+x1974: .word 0x339a3399
+x1978: .word 0x339c339b
+x197c: .word 0x339e339d
+x1980: .word 0x33a0339f
+x1984: .word 0x33a233a1
+x1988: .word 0x33a433a3
+x198c: .word 0x33a633a5
+x1990: .word 0x33a833a7
+x1994: .word 0x33aa33a9
+x1998: .word 0x33ac33ab
+x199c: .word 0x33ae33ad
+x19a0: .word 0x33b033af
+x19a4: .word 0x33b233b1
+x19a8: .word 0x33b433b3
+x19ac: .word 0x1f4033b5
+x19b0: .word 0x1f421f41
+x19b4: .word 0x1f441f43
+x19b8: .word 0x1f461f45
+x19bc: .word 0x1f481f47
+x19c0: .word 0x1f4a1f49
+x19c4: .word 0x1f4c1f4b
+x19c8: .word 0x1f4e1f4d
+x19cc: .word 0x1f501f4f
+x19d0: .word 0x1f521f51
+x19d4: .word 0x1f541f53
+x19d8: .word 0x1f561f55
+x19dc: .word 0x1f581f57
+x19e0: .word 0x1f5a1f59
+x19e4: .word 0x1f5c1f5b
+x19e8: .word 0x1f5e1f5d
+x19ec: .word 0x1f601f5f
+x19f0: .word 0x1f621f61
+x19f4: .word 0x1f641f63
+x19f8: .word 0x1f661f65
+x19fc: .word 0x1f681f67
+x1a00: .word 0x1f6a1f69
+x1a04: .word 0x1f6c1f6b
+x1a08: .word 0x1f6e1f6d
+x1a0c: .word 0x1f701f6f
+x1a10: .word 0x1f721f71
+x1a14: .word 0x1f741f73
+x1a18: .word 0x1f761f75
+x1a1c: .word 0x1f781f77
+x1a20: .word 0x1f7a1f79
+x1a24: .word 0x1f7c1f7b
+x1a28: .word 0x1f7e1f7d
+x1a2c: .word 0x1f801f7f
+x1a30: .word 0x1f821f81
+x1a34: .word 0x1f841f83
+x1a38: .word 0x1f861f85
+x1a3c: .word 0x1f881f87
+x1a40: .word 0x1f8a1f89
+x1a44: .word 0x1f8c1f8b
+x1a48: .word 0x1f8e1f8d
+x1a4c: .word 0x1f901f8f
+x1a50: .word 0x1f921f91
+x1a54: .word 0x1f941f93
+x1a58: .word 0x1f961f95
+x1a5c: .word 0x1f981f97
+x1a60: .word 0x1f9a1f99
+x1a64: .word 0x1f9c1f9b
+x1a68: .word 0x1f9e1f9d
+x1a6c: .word 0x1fa01f9f
+x1a70: .word 0x1fa21fa1
+x1a74: .word 0x1fa41fa3
+x1a78: .word 0x1fa61fa5
+x1a7c: .word 0x1fa81fa7
+x1a80: .word 0x1faa1fa9
+x1a84: .word 0x1fac1fab
+x1a88: .word 0x1fae1fad
+x1a8c: .word 0x1fb01faf
+x1a90: .word 0x1fb21fb1
+x1a94: .word 0x1fb41fb3
+x1a98: .word 0x1fb61fb5
+x1a9c: .word 0x1fb81fb7
+x1aa0: .word 0x1fba1fb9
+x1aa4: .word 0x1fbc1fbb
+x1aa8: .word 0x1fbe1fbd
+x1aac: .word 0x1fc01fbf
+x1ab0: .word 0x1fc21fc1
+x1ab4: .word 0x1fc41fc3
+x1ab8: .word 0x1fc61fc5
+x1abc: .word 0x1fc81fc7
+x1ac0: .word 0x1fca1fc9
+x1ac4: .word 0x1fcc1fcb
+x1ac8: .word 0x1fce1fcd
+x1acc: .word 0x1fd01fcf
+x1ad0: .word 0x1fd21fd1
+x1ad4: .word 0x1fd41fd3
+x1ad8: .word 0x1fd61fd5
+x1adc: .word 0x1fd81fd7
+x1ae0: .word 0x1fda1fd9
+x1ae4: .word 0x1fdc1fdb
+x1ae8: .word 0x1fde1fdd
+x1aec: .word 0x1fe01fdf
+x1af0: .word 0x1fe21fe1
+x1af4: .word 0x1fe41fe3
+x1af8: .word 0x1fe61fe5
+x1afc: .word 0x1fe81fe7
+x1b00: .word 0x1fea1fe9
+x1b04: .word 0x1fec1feb
+x1b08: .word 0x1fee1fed
+x1b0c: .word 0x1ff01fef
+x1b10: .word 0x1ff21ff1
+x1b14: .word 0x1ff41ff3
+x1b18: .word 0x1ff61ff5
+x1b1c: .word 0x1ff81ff7
+x1b20: .word 0x1ffa1ff9
+x1b24: .word 0x1ffc1ffb
+x1b28: .word 0x1ffe1ffd
+x1b2c: .word 0x20001fff
+x1b30: .word 0x20022001
+x1b34: .word 0x20042003
+x1b38: .word 0x20062005
+x1b3c: .word 0x20082007
+x1b40: .word 0x200a2009
+x1b44: .word 0x200c200b
+x1b48: .word 0x200e200d
+x1b4c: .word 0x2010200f
+x1b50: .word 0x20122011
+x1b54: .word 0x20142013
+x1b58: .word 0x20162015
+x1b5c: .word 0x20182017
+x1b60: .word 0x201a2019
+x1b64: .word 0x201c201b
+x1b68: .word 0x201e201d
+x1b6c: .word 0x2020201f
+x1b70: .word 0x20222021
+x1b74: .word 0x20242023
+x1b78: .word 0x20262025
+x1b7c: .word 0x20282027
+x1b80: .word 0x202a2029
+x1b84: .word 0x202c202b
+x1b88: .ascii "- . "
+x1b8c: .word 0x2030202f
+x1b90: .ascii "1 2 "
+x1b94: .ascii "3 4 "
+x1b98: .ascii "5 6 "
+x1b9c: .ascii "7 8 "
+x1ba0: .ascii "9 : "
+x1ba4: .word 0x203c203b
+x1ba8: .ascii "= > "
+x1bac: .word 0x2040203f
+x1bb0: .ascii "A B "
+x1bb4: .ascii "C D "
+x1bb8: .ascii "E F "
+x1bbc: .ascii "G H "
+x1bc0: .ascii "I J "
+x1bc4: .ascii "K L "
+x1bc8: .ascii "M N "
+x1bcc: .ascii "O P "
+x1bd0: .ascii "Q R "
+x1bd4: .ascii "S T "
+x1bd8: .ascii "U V "
+x1bdc: .ascii "W X "
+x1be0: .ascii "Y Z "
+x1be4: .word 0x205c205b
+x1be8: .word 0x205e205d
+x1bec: .word 0x2060205f
+x1bf0: .ascii "a b "
+x1bf4: .ascii "c d "
+x1bf8: .ascii "e f "
+x1bfc: .ascii "g h "
+x1c00: .ascii "i j "
+x1c04: .ascii "k l "
+x1c08: .ascii "m n "
+x1c0c: .ascii "o p "
+x1c10: .ascii "q r "
+x1c14: .ascii "s t "
+x1c18: .ascii "u v "
+x1c1c: .ascii "w x "
+x1c20: .ascii "y z "
+x1c24: .word 0x207c207b
+x1c28: .word 0x207e207d
+x1c2c: .word 0x2080207f
+x1c30: .word 0x20822081
+x1c34: .word 0x20842083
+x1c38: .word 0x20862085
+x1c3c: .word 0x20882087
+x1c40: .word 0x208a2089
+x1c44: .word 0x208c208b
+x1c48: .word 0x208e208d
+x1c4c: .word 0x2090208f
+x1c50: .word 0x20922091
+x1c54: .word 0x20942093
+x1c58: .word 0x20962095
+x1c5c: .word 0x20982097
+x1c60: .word 0x209a2099
+x1c64: .word 0x209c209b
+x1c68: .ascii "Abno"
+x1c6c: .ascii "rmal"
+x1c70: .ascii " ter"
+x1c74: .ascii "mina"
+x1c78: .ascii "tion"
+x1c7c: .ascii "\0\0\0A"
+x1c80: .ascii "rith"
+x1c84: .ascii "meti"
+x1c88: .ascii "c ex"
+x1c8c: .ascii "cept"
+x1c90: .ascii "ion:"
+x1c94: .ascii " \0Il"
+x1c98: .ascii "lega"
+x1c9c: .ascii "l in"
+x1ca0: .ascii "stru"
+x1ca4: .ascii "ctio"
+x1ca8: .ascii "n\0\0\0"
+x1cac: .ascii "\0Int"
+x1cb0: .ascii "erru"
+x1cb4: .ascii "pt r"
+x1cb8: .ascii "ecei"
+x1cbc: .ascii "ved\0"
+x1cc0: .ascii "\0\0\0\0"
+x1cc4: .ascii "Ille"
+x1cc8: .ascii "gal "
+x1ccc: .ascii "addr"
+x1cd0: .ascii "ess\0"
+x1cd4: .ascii "\0\0\0\0"
+x1cd8: .ascii "\0\0\0T"
+x1cdc: .ascii "ermi"
+x1ce0: .ascii "nati"
+x1ce4: .ascii "on r"
+x1ce8: .ascii "eque"
+x1cec: .ascii "st\0\0"
+x1cf0: .ascii "\0\0St"
+x1cf4: .ascii "ack "
+x1cf8: .ascii "over"
+x1cfc: .ascii "flow"
+x1d00: .ascii "\0\0\0\0"
+x1d04: .ascii "\0\0\0\0"
+x1d08: .ascii "\0Red"
+x1d0c: .ascii "irec"
+x1d10: .ascii "t: c"
+x1d14: .word 0x74276e61
+x1d18: .ascii " ope"
+x1d1c: .ascii "n: \0"
+x1d20: .ascii "Out "
+x1d24: .ascii "of h"
+x1d28: .ascii "eap "
+x1d2c: .ascii "memo"
+x1d30: .ascii "ry\0\0"
+x1d34: .ascii "\0\0\0U"
+x1d38: .ascii "ser-"
+x1d3c: .ascii "defi"
+x1d40: .ascii "ned "
+x1d44: .ascii "sign"
+x1d48: .ascii "al 1"
+x1d4c: .ascii "\0\0Us"
+x1d50: .ascii "er-d"
+x1d54: .ascii "efin"
+x1d58: .ascii "ed s"
+x1d5c: .ascii "igna"
+x1d60: .ascii "l 2\0"
+x1d64: .ascii "\0Pur"
+x1d68: .ascii "e vi"
+x1d6c: .ascii "rtua"
+x1d70: .ascii "l fn"
+x1d74: .ascii " cal"
+x1d78: .ascii "led\0"
+x1d7c: .ascii "C++ "
+x1d80: .ascii "libr"
+x1d84: .ascii "ary "
+x1d88: .ascii "exce"
+x1d8c: .ascii "ptio"
+x1d90: .ascii "n\0\0\0"
