@@ -149,3 +149,111 @@ Initial registers: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 
 
 After the function call (if done or not), $60 := $41.
+
+## Various notes
+
+Which is the function to play sounds?
+
+* Tried to remove all calls to #44.
+  All sound still played
+* Tried to remove all calls to #140.
+  No sound played on START, or later. Pen not crashed.
+* Tried to change array index (+1) in call to #140 near 0x910.
+  On START, Only first sound (P(0)) is played, but not P(1).
+  Some other fields still work.
+* Disabled call to #140 near 0x910. Same effect as above.
+* Tried to change array index (+1) in call to #140 near 0x820.
+  On START, Only second sound (P(1)) is played, but not the first (P(0))
+  Some other fields still work.
+* In call to #140 near 0x820, tried to load array index from 0x138, not 0x134
+  On START, Only second sound (P(1)) is played, but not the first (P(0))
+  Some other fields still work.
+* In call to #140 near 0x820, tried to load array index from (*0x134 + 1)
+  On START, it plays P(1) twice! Whoohoo!
+* In call to #140 near 0x820, tried to load array index from (*0x134 + 1)
+  In call to #140 near 0x910, tried to load array index at one less.
+  On START, it plays P(0) and then P(1)! Whoohoo!
+* In call to #140 near 0x820, tried to load array index from (*0x134 + 2)
+  On START, only plays P(1)
+* In call to #140 near 0x820, tried to set array index to 0
+  In call to #140 near 0x910, disable call.
+  On START, only plays P(0)
+* In call to #140 near 0x820, tried to set array index to 1
+  In call to #140 near 0x910, disable call.
+  On START, only plays P(1)
+* In call to #140 near 0x820, tried to set array index to 2
+  In call to #140 near 0x910, disable call.
+  On START, nothing played. Other thing still work
+
+Theory:
+Function #140 plays a sound.
+It is always passed corresponding values from the arrays (#288, #232, #236, #240)
+These arrays contain only the media from a single playlist (hence index 2 does
+not work here).
+Field 0xcc contains the lenght of the playlist.
+
+
+The code following code alone does not play a sound.
+
+    typedef void (*foo)(short, short, char, short);
+    int32_t _24_a(int32_t a1) {
+       (*(foo*)(a1 + 140))(
+         **((short **)(a1 + 228)),
+         **((short **)(a1 + 232)),
+         **((char **)(a1 + 236)),
+         **((short **)(a1 + 240))
+        );
+        *(char *)(*(int32_t *)(a1 + 52) + 3564) = -1;
+        return 255;
+    }
+
+Theory: Need to load/activate a playlist first!
+
+The original code runs
+
+    (*(code *)self->field_0x88)();
+    (*(code *)self->field_0x90)();
+    (*(code *)self->field_0x94)();
+
+before. Trying that… Crashes the pen.
+
+
+Now trying to find out which branches are necessary to play the first sound.
+
+* at 0x030c, unconditional:
+  no sound, crashes
+* at 0x030c, removed:
+  no sound, crashes
+* at 0x030c, only set self->0x34->0xdec = 1 in this branch
+  no on-sound, pen still works
+* at 0x030c, only set self->0x34->0xdec = 1 and self->0x34->0x58 = #100 in this branch
+  on-sound, pen still works
+
+  note: unclear in hindsight if on-sounds works on first or only second  tap
+        from now on working towars second tap only
+* skipping branch at 0x030c and 0x370c alltogether:
+  stuttering on-sound
+* at 0x370, unconditional:
+  stuttering
+* at 0x370, removed:
+  still works
+* at 0x390, removed
+  second tap still works
+
+* at 0x440, unconditional
+  crash
+* at 0x440 and 0x44c: removed:
+  crash
+
+* at 0x710: unconditional (like when field0x128 == false)
+  plays nothing (but no crash)
+* at 0x710: removed (like when field0x128 == true)
+  no start-up sound.
+  Second tap, and other sounds play repeatedly the first few ms, then crash
+
+* at 0x728 (checking for nsounds = 0)
+  still works (as expected)
+  so does removing the other branches for nsounds
+
+* at 0x888: unconditional
+  still works
