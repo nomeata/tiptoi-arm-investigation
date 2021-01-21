@@ -26,175 +26,6 @@ x0040: .word 0x081322e4
 data1:
 x0044: .word 0x04000034
 
-x0048: push    {r2, r3, r4, r5, r6, r7, r8, r9, sl, lr}
-x004c: ldr     r3, [r1, #36]   @ 0x24
-x0050: mov     r7, r2
-x0054: mov     r4, r1
-x0058: mov     r1, #113        @ 0x71
-x005c: mov     r2, #0
-x0060: mov     r6, #0
-x0064: mov     r5, r0
-x0068: blx     r3
-x006c: ldr     r3, [r4, #24]
-x0070: mov     r2, #4
-x0074: mov     r1, sp
-x0078: mov     r0, r5
-x007c: blx     r3
-x0080: ldr     r3, [r4, #36]   @ 0x24
-x0084: ldr     r1, [sp]
-x0088: mov     r2, #0
-x008c: mov     r0, r5
-x0090: blx     r3
-x0094: ldr     r3, [r4, #24]
-x0098: mov     r2, #2
-x009c: add     r1, sp, #4
-x00a0: mov     r0, r5
-x00a4: blx     r3
-x00a8: ldrh    r0, [sp, #4]
-x00ac: cmp     r0, #0
-x00b0: ldrhne  r0, [sp, #4]
-x00b4: cmpne   r0, r7
-x00b8: bls    x0234
-x00bc: b x00dc
-x00c0: mov     r2, #4
-x00c4: ldr     r3, [r4, #24]
-x00c8: add     r1, sp, r2
-x00cc: mov     r0, r5
-x00d0: blx     r3
-x00d4: add     r0, r6, #1
-x00d8: bic     r6, r0, #64, 22 @ 0x10000
-x00dc: cmp     r6, r7
-x00e0: bcc x00c0
-x00e4: mov     r2, #4
-x00e8: ldr     r3, [r4, #24]
-x00ec: add     r1, sp, r2
-x00f0: mov     r0, r5
-x00f4: blx     r3
-x00f8: ldr     r0, [sp, #4]
-x00fc: ldr     r1, [sp, #4]
-x0100: add     r0, r0, #2
-x0104: str     r0, [sp]
-x0108: ldr     r3, [r4, #36]   @ 0x24
-x010c: mov     r0, r5
-x0110: mov     r2, #0
-x0114: blx     r3
-x0118: ldr     r3, [r4, #24]
-x011c: mov     r2, #2
-x0120: add     r1, sp, #4
-x0124: mov     r0, r5
-x0128: blx     r3
-x012c: ldrh    r0, [sp, #4]
-x0130: ldr     r8, x0afc
-x0134: ands    r0, r0, #255    @ 0xff
-x0138: strb    r0, [r8, #2]
-x013c: beq    x0234
-x0140: mov     r6, #0
-x0144: ldr     r9, x0b00
-x0148: ldr     sl, x0b04
-x014c: b x0200
-x0150: ldr     r0, [sp]
-x0154: ldr     r3, [r4, #36]   @ 0x24
-x0158: add     r1, r0, r6, lsl #1
-x015c: mov     r0, r5
-x0160: mov     r2, #0
-x0164: blx     r3
-x0168: ldr     r3, [r4, #24]
-x016c: mov     r2, #2
-x0170: add     r1, sp, #4
-x0174: mov     r0, r5
-x0178: blx     r3
-x017c: ldrh    r7, [sp, #4]
-x0180: ldr     r3, [r4, #36]   @ 0x24
-x0184: mov     r2, #0
-x0188: mov     r1, #4
-x018c: mov     r0, r5
-x0190: blx     r3
-x0194: mov     r2, #4
-x0198: ldr     r3, [r4, #24]
-x019c: add     r1, sp, r2
-x01a0: mov     r0, r5
-x01a4: blx     r3
-x01a8: ldr     r0, [sp, #4]
-x01ac: ldr     r3, [r4, #36]   @ 0x24
-x01b0: add     r1, r0, r7, lsl #3
-x01b4: mov     r0, r5
-x01b8: mov     r2, #0
-x01bc: blx     r3
-x01c0: mov     r2, #4
-x01c4: ldr     r3, [r4, #24]
-x01c8: add     r1, sp, r2
-x01cc: mov     r0, r5
-x01d0: blx     r3
-x01d4: ldr     r0, [sp, #4]
-x01d8: mov     r2, #4
-x01dc: str     r0, [sl, r6, lsl #2]
-x01e0: ldr     r3, [r4, #24]
-x01e4: mov     r0, r5
-x01e8: add     r1, sp, r2
-x01ec: blx     r3
-x01f0: ldr     r0, [sp, #4]
-x01f4: str     r0, [r9, r6, lsl #2]
-x01f8: add     r0, r6, #1
-x01fc: bic     r6, r0, #64, 22 @ 0x10000
-x0200: ldrb    r0, [r8, #2]
-x0204: cmp     r6, r0
-x0208: bcc x0150
-x020c: ldr     r2, [r9]
-x0210: ldr     r1, [sl]
-x0214: ldr     r3, [r4, #44]   @ 0x2c
-x0218: mov     r0, r5
-x021c: blx     r3
-x0220: ldrb    r0, [r8, #2]
-x0224: sub     r0, r0, #1
-x0228: strb    r0, [r8, #2]
-x022c: mov     r0, #1
-x0230: strb    r0, [r8, #3]
-x0234: pop     {r2, r3, r4, r5, r6, r7, r8, r9, sl, pc}
-
-x0238: ldr     r1, [r0, #292]  @ 0x124
-x023c: add     r1, r1, #64, 30 @ 0x100
-x0240: ldrh    r2, [r1, #112]  @ 0x70
-x0244: sub     ip, r2, #128, 26        @ 0x2000
-x0248: subs    ip, ip, #852    @ 0x354
-x024c: moveq   r0, #0
-x0250: bxeq    lr
-x0254: mov     r2, #0
-x0258: strh    r2, [r1, #104]  @ 0x68
-x025c: ldr     r1, [r0, #292]  @ 0x124
-x0260: add     r1, r1, #64, 30 @ 0x100
-x0264: strh    r2, [r1, #106]  @ 0x6a
-x0268: ldr     r3, [r0, #292]  @ 0x124
-x026c: mov     r1, #1
-x0270: add     r3, r3, #64, 30 @ 0x100
-x0274: strh    r1, [r3, #108]  @ 0x6c
-x0278: ldr     r1, [r0, #292]  @ 0x124
-x027c: add     r1, r1, #64, 30 @ 0x100
-x0280: strh    r2, [r1, #110]  @ 0x6e
-x0284: ldr     r0, [r0, #292]  @ 0x124
-x0288: ldr     r1, x0b08
-x028c: add     r0, r0, #64, 30 @ 0x100
-x0290: strh    r1, [r0, #112]  @ 0x70
-x0294: mov     r0, #1
-x0298: bx      lr
-
-x029c: mov     r1, #0
-x02a0: mov     ip, #99 @ 0x63
-x02a4: mov     r2, #0
-x02a8: cmp     r1, #41 @ 0x29
-x02ac: beq    x02d0
-x02b0: cmp     r1, #42 @ 0x2a
-x02b4: ldreq   r3, [r0, #292]  @ 0x124
-x02b8: strheq  ip, [r3, #84]   @ 0x54
-x02bc: beq    x02d0
-x02c0: cmp     r1, #47 @ 0x2f
-x02c4: ldrne   r3, [r0, #292]  @ 0x124
-x02c8: addne   r3, r3, r1, lsl #1
-x02cc: strhne  r2, [r3]
-x02d0: add     r1, r1, #1
-x02d4: bic     r1, r1, #64, 22 @ 0x10000
-x02d8: cmp     r1, #48 @ 0x30
-x02dc: bcc x02a8
-x02e0: bx      lr
 
 entry:
 x02e4: push {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -215,10 +46,6 @@ x0360: pop     {r4, r5, r6, r7, r8, r9, sl, pc}
 x0364: cmp     r0, #1
 x0368: popne   {r4, r5, r6, r7, r8, r9, sl, pc}
 
-@x0388: ldr     r0, [r4, #72]   @ 0x48
-@x038c: ldrh    r0, [r0]
-
-x03c0: b    x0430
 
 x0430: ldr     r0, [r4, #72]   @ 0x48
 x0434: ldrh    r0, [r0]
@@ -299,13 +126,17 @@ x0550: ldr     r1, [r4, #200]  @ 0xc8
 x0554: add     r0, r0, #2
 x0558: str     r0, [r1]
 x055c: b x06c4
+
 x0560: add     r0, r6, #1
 x0564: and     r6, r0, #255    @ 0xff
+
 x0568: ldr     r0, [r4, #188]  @ 0xbc
 x056c: ldrh    r0, [r0]
 x0570: cmp     r0, r6
 x0574: bhi    x051c
+
 x0578: b x06c4
+
 x057c: sub     ip, r0, #224, 28        @ 0xe00
 x0580: subs    ip, ip, #21
 x0584: bne    x05f8
@@ -433,38 +264,13 @@ x0878: blx     ip
 x087c: strb    r8, [r5, #296]  @ 0x128
 x0880:
 
-x0a28: ldrb    r0, [r5, #303]  @ 0x12f
-x0a2c: cmp     r0, #1
-x0a30: ldreq   r0, [r4, #48]   @ 0x30
-x0a34: blxeq   r0
 x0a38: ldr     r0, [r4, #292]  @ 0x124
 x0a3c: ldrh    r1, [r0, #82]   @ 0x52
 x0a40: strh    r1, [r0, #120]  @ 0x78
 
 x0a9c: ldrb    r0, [sl, #2]
 x0aa0: mov     r5, sl
-x0aa4: cmp     r0, #0
-x0aa8: popeq   {r4, r5, r6, r7, r8, r9, sl, pc}
-x0aac: ldr     r0, [r4, #12]
-x0ab0: blx     r0
-x0ab4: cmp     r0, #0
-x0ab8: popne   {r4, r5, r6, r7, r8, r9, sl, pc}
-x0abc: ldrb    r0, [r5, #3]
-x0ac0: ldr     r1, x0b00
-x0ac4: ldr     r2, [r1, r0, lsl #2]
-x0ac8: ldr     r1, x0b04
-x0acc: ldr     r1, [r1, r0, lsl #2]
-x0ad0: ldr     r0, [r4, #176]  @ 0xb0
-x0ad4: ldr     r0, [r0]
-x0ad8: ldr     r3, [r4, #44]   @ 0x2c
-x0adc: blx     r3
-x0ae0: ldrb    r0, [r5, #2]
-x0ae4: sub     r0, r0, #1
-x0ae8: strb    r0, [r5, #2]
-x0aec: ldrb    r0, [r5, #3]
-x0af0: add     r0, r0, #1
-x0af4: strb    r0, [r5, #3]
-x0af8: pop     {r4, r5, r6, r7, r8, r9, sl, pc}
+x0aa8: pop   {r4, r5, r6, r7, r8, r9, sl, pc}
 
 x0afc: .word 0x08141000
 x0b00: .word 0x08141024

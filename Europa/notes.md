@@ -267,3 +267,13 @@ Now trying to find out which branches are necessary to play the first sound.
 * at 0xa4c: unconditional
   still works
 
+* at 0xaa8: unconditional
+  still works
+
+* at 0xa2c: removed
+  still works
+
+* removing code 0x48 ... entry:
+  still works
+
+
