@@ -257,3 +257,13 @@ Now trying to find out which branches are necessary to play the first sound.
 
 * at 0x888: unconditional
   still works
+
+* at 0x944: unconditional
+  still works
+
+* at 0x9bc: unconditional
+  still works
+
+* at 0xa4c: unconditional
+  still works
+

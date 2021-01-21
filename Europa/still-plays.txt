@@ -409,17 +409,16 @@ x0704: blx     r1
 x0708: ldrb    r0, [r5, #296]  @ 0x128
 x070c: cmp     r0, #1
 x0710: bne    x0880
+
 x0714: ldr     r0, [r4, #136]  @ 0x88
 x0718: blx     r0
 
 x072c: ldr     r0, [r4, #144]  @ 0x90
 x0730: blx     r0
+
 x0734: ldr     r0, [r4, #148]  @ 0x94
 x0738: blx     r0
 
-x0748: b    x0850
-
-x0850:
 x0854: ldr     r0, [r4, #240]  @ 0xf0
 x0858: ldrh    r3, [r0]
 x085c: ldr     r0, [r4, #236]  @ 0xec
@@ -432,69 +431,8 @@ x0874: ldr     ip, [r4, #140]  @ 0x8c
 x0878: blx     ip
 
 x087c: strb    r8, [r5, #296]  @ 0x128
-x0880: ldrb    r0, [r5, #298]  @ 0x12a
-x0884: cmp     r0, #1
-x0888: b    x093c
+x0880:
 
-x093c: ldrb    r0, [r5, #300]  @ 0x12c
-x0940: cmp     r0, #1
-x0944: bne    x09b8
-x0948: ldr     r1, [r4, #244]  @ 0xf4
-x094c: ldrb    r0, [r5, #301]  @ 0x12d
-x0950: ldrh    r1, [r1]
-x0954: cmp     r0, r1
-x0958: bcs    x0a28
-x095c: ldr     r0, [r4, #12]
-x0960: blx     r0
-x0964: cmp     r0, #0
-x0968: bne    x0a28
-x096c: ldrb    r0, [r5, #301]  @ 0x12d
-x0970: ldr     r1, [r4, #304]  @ 0x130
-x0974: ldr     r2, [r1, r0, lsl #2]
-x0978: ldr     r1, [r4, #300]  @ 0x12c
-x097c: ldr     r1, [r1, r0, lsl #2]
-x0980: ldr     r0, [r4, #176]  @ 0xb0
-x0984: ldr     r0, [r0]
-x0988: ldr     r3, [r4, #44]   @ 0x2c
-x098c: blx     r3
-x0990: ldrb    r0, [r5, #301]  @ 0x12d
-x0994: add     r0, r0, #1
-x0998: and     r0, r0, #255    @ 0xff
-x099c: strb    r0, [r5, #301]  @ 0x12d
-x09a0: ldr     r1, [r4, #244]  @ 0xf4
-x09a4: ldrh    r1, [r1]
-x09a8: cmp     r0, r1
-x09ac: strbcs  r8, [r5, #301]  @ 0x12d
-x09b0: strbcs  r8, [r5, #300]  @ 0x12c
-x09b4: b x0a28
-x09b8: cmp     r0, #2
-x09bc: bne    x0a28
-x09c0: ldrb    r0, [r5, #301]  @ 0x12d
-x09c4: ldrb    r1, [r5, #302]  @ 0x12e
-x09c8: cmp     r0, r1
-x09cc: bhi    x0a28
-x09d0: ldr     r0, [r4, #12]
-x09d4: blx     r0
-x09d8: cmp     r0, #0
-x09dc: bne    x0a28
-x09e0: ldrb    r0, [r5, #301]  @ 0x12d
-x09e4: ldr     r1, [r4, #304]  @ 0x130
-x09e8: ldr     r2, [r1, r0, lsl #2]
-x09ec: ldr     r1, [r4, #300]  @ 0x12c
-x09f0: ldr     r1, [r1, r0, lsl #2]
-x09f4: ldr     r0, [r4, #176]  @ 0xb0
-x09f8: ldr     r0, [r0]
-x09fc: ldr     r3, [r4, #44]   @ 0x2c
-x0a00: blx     r3
-x0a04: ldrb    r0, [r5, #301]  @ 0x12d
-x0a08: add     r0, r0, #1
-x0a0c: and     r0, r0, #255    @ 0xff
-x0a10: strb    r0, [r5, #301]  @ 0x12d
-x0a14: ldrb    r1, [r5, #302]  @ 0x12e
-x0a18: cmp     r0, r1
-x0a1c: strbcs  r8, [r5, #301]  @ 0x12d
-x0a20: strbcs  r8, [r5, #300]  @ 0x12c
-x0a24: strbcs  r8, [r5, #302]  @ 0x12e
 x0a28: ldrb    r0, [r5, #303]  @ 0x12f
 x0a2c: cmp     r0, #1
 x0a30: ldreq   r0, [r4, #48]   @ 0x30
@@ -502,28 +440,7 @@ x0a34: blxeq   r0
 x0a38: ldr     r0, [r4, #292]  @ 0x124
 x0a3c: ldrh    r1, [r0, #82]   @ 0x52
 x0a40: strh    r1, [r0, #120]  @ 0x78
-x0a44: ldrb    r0, [sl]
-x0a48: cmp     r0, #0
-x0a4c: beq    x0a9c
-x0a50: ldr     r0, [r4, #12]
-x0a54: blx     r0
-x0a58: cmp     r0, #0
-x0a5c: bne    x0a9c
-x0a60: ldrb    r0, [sl, #1]
-x0a64: ldr     r1, [r4, #88]   @ 0x58
-x0a68: ldr     r2, [r1, r0, lsl #2]
-x0a6c: ldr     r1, [r4, #84]   @ 0x54
-x0a70: ldr     r1, [r1, r0, lsl #2]
-x0a74: ldr     r0, [r4, #176]  @ 0xb0
-x0a78: ldr     r0, [r0]
-x0a7c: ldr     r3, [r4, #44]   @ 0x2c
-x0a80: blx     r3
-x0a84: ldrb    r0, [sl]
-x0a88: sub     r0, r0, #1
-x0a8c: strb    r0, [sl]
-x0a90: ldrb    r0, [sl, #1]
-x0a94: add     r0, r0, #1
-x0a98: strb    r0, [sl, #1]
+
 x0a9c: ldrb    r0, [sl, #2]
 x0aa0: mov     r5, sl
 x0aa4: cmp     r0, #0
