@@ -287,3 +287,6 @@ Now trying to find out which branches are necessary to play the first sound.
 
 * at 0x530: removed
   no on-sound, does not crash
+
+* at 0xa40, writing self->0x124->0x52 to self->0x124->0x78 seems necessary
+  (but does not yet make the C code work)
