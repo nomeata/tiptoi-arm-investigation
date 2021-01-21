@@ -276,4 +276,10 @@ Now trying to find out which branches are necessary to play the first sound.
 * removing code 0x48 ... entry:
   still works
 
+* at 0x484: removed
+  no on-sound, does not crash
 
+* at 0x484: unconditional
+  still works
+
+*

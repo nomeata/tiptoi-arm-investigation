@@ -66,25 +66,7 @@ x0464: subscs  ip, ip, #231    @ 0xe7
 x0468: bhi    x057c
 x046c: ldr     r0, [r4, #100]  @ 0x64
 x0470: strb    r8, [r0]
-x0474: ldr     r1, [r4, #272]  @ 0x110
-x0478: ldr     r0, [r5, #4]
-x047c: ldr     r1, [r1]
-x0480: cmp     r0, r1
-x0484: beq    x04c0
-x0488: ldr     r0, [r4, #12]
-x048c: blx     r0
-x0490: cmp     r0, #0
-x0494: ldrne   r0, [r4, #48]   @ 0x30
-x0498: blxne   r0
-x049c: ldr     r0, [r4, #292]  @ 0x124
-x04a0: add     r0, r0, #64, 30 @ 0x100
-x04a4: strh    r8, [r0, #112]  @ 0x70
-x04a8: strb    r7, [r5, #88]   @ 0x58
-x04ac: ldr     r0, [r5, #4]
-x04b0: str     r0, [r5, #116]  @ 0x74
-x04b4: mov     r0, #255        @ 0xff
-x04b8: strb    r0, [r5, #3564] @ 0xdec
-x04bc: b x0708
+
 x04c0: ldrh    r1, [r5, #22]
 x04c4: cmp     r0, r1
 x04c8: popne   {r4, r5, r6, r7, r8, r9, sl, pc}
